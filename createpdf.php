@@ -3,10 +3,10 @@
 require 'includes/dbcon.php';
  error_reporting(E_ALL);
 ini_set('display_errors', 1);
-            
- require 'demo.php';
-
+                
+require 'demo.php';
 require_once 'plugins/dompdf/autoload.inc.php';
+
 
 
 
@@ -77,7 +77,14 @@ $string
      </table>";
 
 
-$customerID = "SELECT customer_id FROM orders WHERE job_order = '$order'";
+use Dompdf\Dompdf;
+$dompdf = new Dompdf();
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'portrait');
+$dompdf->render();
+$dompdf->stream();
+
+/*$customerID = "SELECT customer_id FROM orders WHERE job_order = '$order'";
 $cid = '';
 
 $cust_id = mysqli_query($con, $customerID);
@@ -85,7 +92,7 @@ foreach ($cust_id as $row) {
    $cid = $row['customer_id'];
     }
 
-echo "CID".$cid;
+echo "CID".$cid;*/
     
 //getBillingAddress($cid);
     
@@ -119,12 +126,5 @@ $billing_addr .= $billaddr->getCountry();
 }  
 }
 
-
-use Dompdf\Dompdf;
-$dompdf = new Dompdf();
-$dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'portrait');
-$dompdf->render();
-$dompdf->stream();
 
 ?>

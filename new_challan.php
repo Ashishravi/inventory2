@@ -57,7 +57,7 @@ function add_row()
 {
  $rowno=$("#challan_table tr").length;
  $rowno=$rowno+1;
- $("#challan_table tr:last").after("<tr id='row"+$rowno+"'><td>  <select class='custom-select form-control' name='item_bundle' id='item_bundle' required><option value='' selected disabled>Please select</option><option value='item'>Item</option><option value='bundle'>Bundle</option></select></td><td><input type='text' name='item_code[]' placeholder='ItemCode'></td><td><input type='text' name='item_description[]' placeholder='Description'></td><td><input type='text' name='item_quantity[]' placeholder='Quantity'></td><td><input type='text' name='app_price[]' placeholder='Approx Unit Price'></td><td><input type='text' name='total_price[]' placeholder='Total Price'></td><td><button class='btn btn-danger' type='button' onclick=delete_row('row"+$rowno+"')>-Delete</button></td></tr>");
+ $("#challan_table tr:last").after("<tr id='row"+$rowno+"'><td><input type='text' name='item_code[]' placeholder='ItemCode'></td><td><input type='text' name='item_description[]' placeholder='Description'></td><td><input type='text' name='item_quantity[]' placeholder='Quantity'></td><td><input type='text' name='app_price[]' placeholder='Approx Unit Price'></td><td><input type='text' name='total_price[]' placeholder='Total Price'></td><td><button class='btn btn-danger' type='button' onclick=delete_row('row"+$rowno+"')>-Delete</button></td></tr>");
 }
     
     
@@ -66,6 +66,20 @@ function delete_row(rowno)
  $('#'+rowno).remove();
 }
 
+    
+    function copy_to(){
+  //    var n1 = document.getElementById('item-code');
+ //     var n2 = document.getElementById('item_code');
+  document.getElementById('item_code').value = document.getElementById('item-code').value;
+  document.getElementById('item_description').value = document.getElementById('description').value;
+  document.getElementById('app_price').value = document.getElementById('value').value;
+        
+      //  var a = $('#search').html();
+//var b = $('#form-div').html(a);
+    }    
+    
+    
+    
 </script>
 
   <!-- Content Wrapper. Contains page content -->
@@ -135,11 +149,18 @@ function delete_row(rowno)
 	          </blockquote>
                  
                    
-                <div class="frmSearch">
+                <div class="frmSearch row" id="search">
+                    <select>
+                       <option value="item">Item</option>
+                       <option value="bundle">Bundle</option>
+                    </select>
 <input type="text" id="item-code" placeholder="Item Name" />
 <input type="text" id="description" placeholder="Description" />
                     <input type="text" id="value" placeholder="Value" />
+                     <input type="button" value="copy" onclick="copy_to()"/>
 <div id="suggesstion-box"></div>
+                   
+                   
 </div>
                        
                          <div id="form_div">
@@ -148,7 +169,6 @@ function delete_row(rowno)
   <table id="challan_table" class="table table-striped">
         <thead>
 		            <tr>
-                        <th>Type</th>
 		              <th>Item</th>
                         <th>Description</th>
 		              <th>Quantity</th>
@@ -158,15 +178,10 @@ function delete_row(rowno)
 		            </thead>
       <tbody>
    <tr id="row1">
-       <td>  <select class="custom-select form-control" name="item_bundle" id="item_bundle" required>
-                         <option value="" selected disabled>Please select</option>
-                       <option value="item">Item</option>
-                       <option value="bundle">Bundle</option>
-                    </select></td>
     <td><input type="text" name="item_code[]" id="item_code" placeholder="Item Code"></td>
     <td><input type="text" name="item_description[]" id="item_description" placeholder="Description"></td>
     <td><input type="text" name="item_quantity[]" id="item_quantity" placeholder="Quantity"></td>
-       <td><input type="text" name="app_price[]" placeholder="Approx Unit Price"></td>
+       <td><input type="text" name="app_price[]" id="app_price" placeholder="Approx Unit Price"></td>
         <td><input type="number" name="total_price[]" placeholder="Total Price"></td>
    </tr>
           </tbody>
