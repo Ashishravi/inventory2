@@ -29,50 +29,28 @@
                
                    <div class="form-group">
                    <label for="mailing_address">Mailing Address</label>                         
-                   <select class="custom-select form-control" name="mailing_address" id="mailing_address">
-                         <option value="" selected disabled>Please select</option>
-                       <?php
-                       $location = mysqli_query($con, "SELECT location_id, location_name FROM table_location");
-		           		foreach ($location as $row) { ?>
-                       <option value="<?php echo $row['location_id'] ?>"><?php echo $row['location_name'] ?></option>
-                       <?php }	?>
-                       
-                    </select>
-                          
+                  <input type="text" class="form-control" name="mailing_address" id="mailing_address" placeholder="mailing_address">                         
                 </div>
                     <div class="form-group">
                    <label for="billing_address">Billing Address</label>
-                         
-                   <select class="custom-select form-control" name="billing_address" id="billing_address">
-                         <option value="" selected disabled>Please select</option>
-                       <?php
-                       $location = mysqli_query($con, "SELECT location_id, location_name FROM table_location");
-		           		foreach ($location as $row) { ?>
-                       <option value="<?php echo $row['location_id'] ?>"><?php echo $row['location_name'] ?></option>
-                       <?php }	?>
-                       
-                    </select>
+                         <input type="text" class="form-control" name="billing_address" id="billing_address" placeholder="billing address">           
+                </div>
+                  <div class="form-group">
+                   <label for="delivery_address">Delivery Address</label>
+                                    
+                    <input type="text" class="form-control" name="delivery_address" id="delivery_address" placeholder="delivery_address">   
                           
+                </div>
+                  
+                  <div class="form-group">
+                  <label for="id">Customer ID</label>
+                  <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID">
                 </div>
                   <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
                 </div>
-             <div class="form-group">
-                   <label for="delivery_address">Delivery Address</label>
-                         
-                   <select class="custom-select form-control" name="delivery_address" id="delivery_address">
-                         <option value="" selected disabled>Please select</option>
-                       <?php
-                       $location = mysqli_query($con, "SELECT location_id, location_name FROM table_location");
-		           		foreach ($location as $row) { ?>
-                       <option value="<?php echo $row['location_id'] ?>"><?php echo $row['location_name'] ?></option>
-                       <?php }	?>
-                       
-                    </select>
-                          
-                </div>
-                  
+             
             <!--    <div class="form-group">
                   <label for="address">Delivery Address</label>
                   <textarea class="form-control" rows="3" name="delivery_address" id="delivery_address" placeholder="Enter Address"></textarea>
@@ -117,6 +95,73 @@
 	          <input type="file" name="fileToUpload[]" id="fileToUpload">
 	          <p class="help-block">Insert the item picture here</p>
 	        </div>
+               
+   <table id="challan_table" class="table table-striped">
+        <thead>
+		            <tr>
+                    <th width="2%"><input id="check_all" class="formcontrol" type="checkbox"/></th>
+		              <th>Item</th>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Units</th>
+                        <th>Duration</th>
+                        <th>Total Price</th>
+		            </tr>
+		            </thead>
+      <tbody>
+   <tr>
+       <td><input class="case" type="checkbox"/></td>
+       <td><select id="type"><option value="Item" name="type[]">Item</option><option value="Bundle">Bundle</option></select></td>
+    <td><input type="text" name="item_description[]" id="item_description_1" class="autocomplete_txt" placeholder="Description"></td>
+    <td><input type="text" name="unit_price[]" id="unit_price" placeholder="Unit Price"></td>
+       <td><input type="text" name="qty[]" id="qty" placeholder="Quantity"></td>
+       <td><select id="unit_days" name="unit_days[]"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option></select></td>
+       <td><input type="text" name="duration[]" id="duration" placeholder="Duration"></td>
+        <td><input type="number" name="total_price[]" placeholder="Total Price"></td>
+   </tr>
+          </tbody>
+       
+  </table>
+                  <button class="btn btn-danger delete" type="button">- Delete</button>
+      			<button class="btn btn-success addmore" type="button">+ Add More</button>
+                  <!--  <input type="button" onclick="add_row();" value="ADD ROW">-->
+  <input type="submit" name="submit_row" value="SUBMIT">
+                  
+                  
+                  <div class="form-group">
+	          <label for="total">total</label>
+	          <input type="number" name="total" id="total">
+                  </div>
+                  
+                     <div class="form-group">
+	          <label for="freight">Freight</label>
+	          <input type="number" name="freight" id="freight">
+                  </div>
+                        
+                   <div class="form-group">
+	          <label for="sub_total">Sub Total</label>
+	          <input type="number" name="sub_total" id="sub_total">
+                  </div>
+                  
+                <div class="form-group">
+	          <label for="tax">Service Tax</label>
+	          <input type="number" name="tax" id="tax">
+                  </div>
+                          
+                  <div class="form-group">
+	          <label for="swach_bharat">Swach Bharat</label>
+	          <input type="number" name="swach_bharat" id="swach_bharat">
+                  </div>
+                          
+                  <div class="form-group">
+	          <label for="kkc">KKC</label>
+	          <input type="number" name="kkc" id="kkc">
+                  </div>
+                  <div class="form-group">
+	          <label for="grand_total">Total</label>
+	          <input type="number" name="grand_total" id="grand_total">
+                  </div>       
 	      </div>
 	      <!-- /.box-body -->
 	
