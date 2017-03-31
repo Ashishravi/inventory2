@@ -112,7 +112,7 @@
       <tbody>
    <tr>
        <td><input class="case" type="checkbox"/></td>
-       <td><select id="type"><option value="Item" name="type[]">Item</option><option value="Bundle">Bundle</option></select></td>
+       <td><select id="type" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
     <td><input type="text" name="item_description[]" id="item_description_1" class="autocomplete_txt" placeholder="Description"></td>
     <td><input type="text" name="unit_price[]" id="unit_price" placeholder="Unit Price"></td>
        <td><input type="text" name="qty[]" id="qty" placeholder="Quantity"></td>

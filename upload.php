@@ -77,9 +77,35 @@ if ($uploadOk == 0) {
 }
 }
 }
-    $sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,billing_add,mailing_add,delivery_add,phone,name,email,date) VALUES ('".$new1."','".$new2."','".$new3."','".$new4."',0,'".$_POST['description']."','".$_POST['billing_address']."','".$_POST['mailing_address']."','".$_POST['delivery_address']."','".$_POST['phone']."','".$_POST['name']."','".$_POST['email']."','".$_POST['del_date']."')";
+    $sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,billing_add,mailing_add,delivery_add,name,date) VALUES ('".$new1."','".$new2."','".$new3."','".$new4."',0,'".$_POST['description']."','".$_POST['billing_address']."','".$_POST['mailing_address']."','".$_POST['delivery_address']."','".$_POST['name']."','".$_POST['del_date']."')";
+
 //echo $sql; 
 mysqli_query($con, $sql);
+
+ $item_type=$_POST['type'];
+ $item_description=$_POST['item_description'];
+ $unit_price=$_POST['unit_price'];
+ $item_qty=$_POST['qty'];
+ $unit_days=$_POST['unit_days'];
+ $duration=$_POST['duration'];
+ $total_price=$_POST['total_price'];
+ $total=$_POST['total'];
+ $freight=$_POST['freight'];
+ $sub_total=$_POST['sub_total'];
+ $tax=$_POST['tax'];
+ $swach_bharat=$_POST['swach_bharat'];
+ $kkc=$_POST['kkc'];
+ $grand_total=$_POST['grand_total'];
+    
+ for($i=0;$i<count($item_description);$i++)
+ {
+  if($item_type[$i]!="" && $item_description[$i]!="" && $item_qty[$i]!="")
+  { 
+      $sql1 = "insert into table_quotation (description,unit_price,qty,units,duration,sub_total,freight,tax,swach_bharat,kkc,total) values('$item_description[$i]',$unit_price[$i],$item_qty[$i],'$unit_days[$i]',$duration[$i],$sub_total,$freight,$tax,$swach_bharat,$kkc,$grand_total)";
+       mysqli_query($con, $sql1);
+  }
+ }
+
 header('location: dashboard_sales.php');
 
 ?>

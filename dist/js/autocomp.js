@@ -56,18 +56,18 @@ $(document).on('focus','.autocomplete_txt',function(){
 				   name_startsWith: request.term,
                    i_type: i_type
 				},
-				 success: /*function( data ) {
+				 success: function( data ) {
 					 response( $.map( data, function( item ) {
 					 	var code = item.split();
 						return {
 							label: code[0],
 							value: code[0],
 							data : item
-						}*/
+						}
                 
                 function(data){var myJSON = JSON.stringify(data);
                               alert(myJSON);}
-					});
+					}));
 				}
 			});
 		},
