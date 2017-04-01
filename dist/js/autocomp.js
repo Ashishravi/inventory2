@@ -31,11 +31,10 @@ $(".delete").on('click', function() {
 });
 
 
-//autocomplete script
+/*
 $(document).on('focus','.autocomplete_txt',function(){	
     var i_type;
     if(document.getElementById('type').options.value=="Item") {
-  //Nabh radio button is checked
         i_type = "table_item"
 }else if(document.getElementById('type').options.value=="Bundle") {
   //Non Nabh radio button is checked
@@ -65,8 +64,6 @@ $(document).on('focus','.autocomplete_txt',function(){
 							data : item
 						}
                 
-                function(data){var myJSON = JSON.stringify(data);
-                              alert(myJSON);}
 					}));
 				}
 			});
@@ -129,3 +126,4 @@ function IsNumeric(e) {
 $(function () {
     $('#invoiceDate').datepicker({});
 });
+*/
