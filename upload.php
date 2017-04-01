@@ -97,14 +97,14 @@ mysqli_query($con, $sql);
  $kkc=$_POST['kkc'];
  $grand_total=$_POST['grand_total'];
     
- for($i=0;$i<count($item_description);$i++)
+/* for($i=0;$i<count($item_description);$i++)
  {
   if($item_type[$i]!="" && $item_description[$i]!="" && $item_qty[$i]!="")
   { 
       $sql1 = "insert into table_quotation (description,unit_price,qty,units,duration,sub_total,freight,tax,swach_bharat,kkc,total) values('$item_description[$i]',$unit_price[$i],$item_qty[$i],'$unit_days[$i]',$duration[$i],$sub_total,$freight,$tax,$swach_bharat,$kkc,$grand_total)";
        mysqli_query($con, $sql1);
   }
- }
+ }*/
 
 header('location: dashboard_sales.php');
 

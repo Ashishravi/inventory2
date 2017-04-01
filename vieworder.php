@@ -69,6 +69,10 @@ $location_result = mysqli_fetch_array($location);
 	            </strong><?php echo $result['date']; ?>
 	          </blockquote>
                 
+                <form action="get_quotation.php" method="post" >
+                    <button type="submit" name="get_quot" value="<?php echo $_GET['id']; ?>">Get Quotation</button>
+                </form>
+                
         	</div>
 
 		    </div>
