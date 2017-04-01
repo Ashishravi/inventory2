@@ -77,7 +77,7 @@ if ($uploadOk == 0) {
 }
 }
 }
-    $sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,billing_add,mailing_add,delivery_add,name,date) VALUES ('".$new1."','".$new2."','".$new3."','".$new4."',0,'".$_POST['description']."','".$_POST['billing_address']."','".$_POST['mailing_address']."','".$_POST['delivery_address']."','".$_POST['name']."','".$_POST['del_date']."')";
+    $sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,billing_add,mailing_add,delivery_add,name,date,customer_id) VALUES ('".$new1."','".$new2."','".$new3."','".$new4."',0,'".$_POST['description']."','".$_POST['billing_address']."','".$_POST['mailing_address']."','".$_POST['delivery_address']."','".$_POST['name']."','".$_POST['del_date']."','".$_POST['id']"')";
 
 //echo $sql; 
 //mysqli_query($con, $sql)
