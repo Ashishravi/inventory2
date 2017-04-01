@@ -1,6 +1,4 @@
-<?php
-
-$html="<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='en'>
 <head>
   <meta charset='utf-8'>
@@ -51,6 +49,4 @@ $html="<!DOCTYPE html>
   </table>
 </div>
 </body>
-</html> ";
-
-?>
+</html>

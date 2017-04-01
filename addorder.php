@@ -20,7 +20,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-	      <form role="form" method="post" action="upload.php" enctype="multipart/form-data">
+	      <form role="form" method="post" action="set_quotation.php" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="description">Remarks</label>
