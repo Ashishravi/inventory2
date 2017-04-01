@@ -17,6 +17,7 @@ $items = mysqli_query($con, $quotation_items);
     $si++;
     $string.="<tr>
      <td>$si</td>
+      <td>$si</td>
     <td>$row[desc]</td>
     <td>$row[unit_price]</td>
     <td>$row[qty]</td>
@@ -63,10 +64,11 @@ echo "
   <table class='table table-striped'>
     <thead>
       <tr>
+      <th>S No</th>
           <th>Type</th>
-        <th>Item Description</th>
-        <th>Item Quantity</th>
-        <th>Unit Price</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Unit Price/$row[units]</th>
           <th>Duration</th>
         <th>Total Price</th>
       </tr>
@@ -74,6 +76,7 @@ echo "
     <tbody>
    $string
          <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

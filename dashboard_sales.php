@@ -15,20 +15,14 @@
     <!-- Main content -->
     <section class="content">
       <!-- Info boxes -->
-      <div class="col-md-4 col-sm-4 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-plus"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Punch New Orders</span>
-                 <a href="addorder.php" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-      <!-- /.row -->
-      <!-- Main row -->
+   <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#menu1">Orders</a></li>
+    <li><a data-toggle="tab" href="#menu2">Quotations</a></li>
+  </ul>
+        
+        <div class="tab-content">
+      <div id="menu1" class="tab-pane fade in active">
+      <h3>Orders</h3>
       <div class="row">
         <!-- Left col -->
         <div class="col-md-12">
@@ -96,6 +90,17 @@
    
         <!-- /.col -->
       </div>
+    </div>
+             <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+            
+            
+        </div>
+      <!-- /.row -->
+      <!-- Main row -->
+     
       <!-- /.row -->
     </section>
     <!-- /.content -->
