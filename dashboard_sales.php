@@ -15,13 +15,14 @@
     <!-- Main content -->
     <section class="content">
       <!-- Info boxes -->
+        <div class=" nav-tabs-custom">
    <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#menu1">Orders</a></li>
     <li><a data-toggle="tab" href="#menu2">Quotations</a></li>
   </ul>
         
-        <div class="tab-content">
-      <div id="menu1" class="tab-pane fade in active">
+<div class="tab-content">
+    <div id="menu1" class="tab-pane fade in active">
       <h3>Orders</h3>
       <div class="row">
         <!-- Left col -->
@@ -91,11 +92,81 @@
         <!-- /.col -->
       </div>
     </div>
-             <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <div id="menu2" class="tab-pane fade">
+            <h3>Orders</h3>
+      <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+          <!-- TABLE: LATEST ORDERS -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Latest Orders</h3>
+            </div>
+            <!-- /.box-header -->
+      
+           
+                
+                 <div class="box-body">
+              <table id="godown" class="table table-bordered table-hover">
+                <thead>
+               <tr>
+                  <th>Status</th>
+                  <th>CustomerID</th>
+                  <th>Customer Name</th>
+                  <th>Edit</th>
+                    <th>Create Order</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $quotation = mysqli_query($con,"SELECT * FROM table_quotation ORDER BY DESC timestamp");
+                while($q_result = mysqli_fetch_array($quotation))
+                {
+                ?>
+                <tr>
+                       <td>
+                           <?php if($q_result['status'] == 1) { ?>
+                           <span class="label label-info">Planning</span>
+                           <?php } elseif($q_result['status'] == -1) { ?>
+                           <span class="label label-danger">Rejected</span>
+                           <?php } elseif($q_result['status'] == 0) {?>
+                            <span class="label label-default">FC Pending</span>
+                           <?php } ?>
+                    </td>  
+                    
+                    
+                  <td><?php echo $q_result['description'] ?></td>
+                     <td><?php echo $q_result['job_order'] ?></td>
+                <td><a class="btn btn-block btn-default" href="vieworder.php?id=<?php echo $q_result['id']; ?>"><i class="fa fa-eye"></i> View</a></td>
+                </tr>
+                <?php 
+                }
+                ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Status</th>
+                  <th>CustomerID</th>
+                  <th>Customer Name</th>
+                  <th>Edit</th>
+                    <th>Create Order</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+      
+           
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+   
+        <!-- /.col -->
+      </div>
     </div>
             
+            
+        </div>
             
         </div>
       <!-- /.row -->
