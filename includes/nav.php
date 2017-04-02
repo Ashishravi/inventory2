@@ -33,6 +33,12 @@
         </li>
           
            <?php if ($_SESSION['name']=="orders"): ?>
+             <li class="treeview <?php if($currentPage =='addquotation' ){echo 'active';}?>">
+          <a href="addquotation.php">
+            <i  class="fa fa-edit"></i> <span>Add Quotation</span>
+          </a>
+        </li>
+          
             <li class="treeview <?php if($currentPage =='addorder' ){echo 'active';}?>">
           <a href="addorder.php">
             <i  class="fa fa-edit"></i> <span>Add Order</span>

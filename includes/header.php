@@ -61,7 +61,7 @@ $currentPage = $getpage[0];
 }
 </style>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini">
 <div class="wrapper">
 <header class="main-header">
 

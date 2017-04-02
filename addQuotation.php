@@ -4,11 +4,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        New Order
+        New Quotation
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">New Order</li>
+        <li class="active">New Quotation</li>
       </ol>
     </section>
 
@@ -54,31 +54,6 @@
                   <hr>
                   
                  
-               
-            <div class="row">
-	        <div class="form-group col-md-3">
-	          <label for="image1">Order Image</label>
-	          <input type="file" name="fileToUpload[]" id="fileToUpload">
-	          <p class="help-block">Insert the item picture here</p>
-	        </div>
-            <div class="form-group col-md-3">
-	          <label for="image1">Security Letter Image</label>
-	          <input type="file" name="fileToUpload[]" id="fileToUpload">
-	          <p class="help-block">Insert the item picture here</p>
-	        </div>
-            <div class="form-group col-md-3">
-	          <label for="image1">Rental Payment Image</label>
-	          <input type="file" name="fileToUpload[]" id="fileToUpload">
-	          <p class="help-block">Insert the item picture here</p>
-	        </div>
-            <div class="form-group col-md-3">
-	          <label for="image1">Security Cheque</label>
-	          <input type="file" name="fileToUpload[]" id="fileToUpload">
-	          <p class="help-block">Insert the item picture here</p>
-	        </div>
-            </div>
-                  <hr>
-               
    <table id="challan_table" class="table table-striped">
         <thead>
 		            <tr>
