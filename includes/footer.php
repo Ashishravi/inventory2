@@ -80,5 +80,8 @@ $('#datepicker').datepicker({
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <script src="dist/js/autocomp.js"></script>
+
+
+
 </body>
 </html>
