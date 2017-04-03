@@ -1,4 +1,33 @@
 <?php include("includes/header.php"); ?>
+
+<?php
+$s_no = $_GET['id'];
+
+$sql = "SELECT * FROM `table_quotation` WHERE s_no = $s_no";
+$result_i  = mysqli_query($con, $sql);
+$result = mysqli_fetch_array($result_i);
+
+$quotation_items = "SELECT * FROM `table_quotation_item` WHERE s_no = $s_no";
+
+$items = mysqli_query($con, $quotation_items);
+
+    $si = 0;
+    $string = '';
+    foreach ($items as $row) {
+    $si++;
+    $string.="<tr>
+     <td>$si</td>
+      <td>$si</td>
+    <td>$row[desc]</td>
+    <td>$row[unit_price]</td>
+    <td>$row[qty]</td>
+    <td>$row[duration] $row[units]</td>
+    <td>$row[tot]</td>
+    </tr>";
+    }
+
+
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -57,11 +86,11 @@ function selectCustomer(id,name) {
                <div class="col-md-6">
                                   <div class="form-group">
                   <label for="id">Customer ID</label>
-                  <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID">
+                  <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" value="<?php echo $result['customer_id']; ?>">
                 </div>
                   <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?php echo $result['customer_name']; ?>">
                      
                 </div>
                                   <div id="suggesstion-box"></div>
@@ -72,7 +101,7 @@ function selectCustomer(id,name) {
                                  <div class="form-group">
                    <label for="delivery_address">Delivery Address</label>
                                     
-                    <input type="text" class="form-control" name="delivery_address" id="delivery_address" placeholder="Delivery Address">   
+                    <input type="text" class="form-control" name="delivery_address" id="delivery_address" placeholder="Delivery Address" value="<?php echo $result['delivery_address']; ?>">   
                           
                 </div>
                  
@@ -82,7 +111,7 @@ function selectCustomer(id,name) {
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" name="del_date" class="form-control pull-right" id="datepicker">
+                  <input type="text" name="del_date" class="form-control pull-right" value="<?php echo $result['delivery_date']; ?>" id="datepicker">
                 </div>
                 </div></div>
                                  </div>
