@@ -2,8 +2,11 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+      <link href="dist/css/jquery-ui.min.css" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+      <script src="dist/js/jquery-ui.min.js"></script>
       <script>
+    
 $(document).ready(function(){
 	 $("#name").keyup(function(){
 		$.ajax({
@@ -31,6 +34,7 @@ function selectCustomer(id,name) {
 }
 </script>
 
+      
       
       
     <section class="content-header">
@@ -105,13 +109,17 @@ function selectCustomer(id,name) {
       <tbody>
    <tr>
        <td><input class="case" type="checkbox"/></td>
-       <td><select id="type" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
-    <td><input type="text" name="item_description[]" id="item_description_1" class="autocomplete_txt" placeholder="Description"></td>
-    <td><input type="text" name="unit_price[]" id="unit_price" placeholder="Unit Price"></td>
-       <td><input type="text" name="qty[]" id="qty" placeholder="Quantity"></td>
-       <td><select id="unit_days" name="unit_days[]"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option></select></td>
-       <td><input type="text" name="duration[]" id="duration" placeholder="Duration"></td>
-        <td><input type="number" name="total_price[]" placeholder="Total Price"></td>
+       
+       <td><select id="type_1" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
+       
+    <td><input type="text" data-type="productName" name="item_description[]" id="item_description_1" class="autocomplete_txt" placeholder="Description" autocomplete="off"></td>
+       
+    <td><input type="number" step="any" name="unit_price[]" id="unit_price_1" autocomplete="off" placeholder="Unit Price" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+       
+       <td><input type="number" step="any" name="qty[]" id="qty_1" autocomplete="off" placeholder="Quantity"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+       <td><select id="unit_days_1" name="unit_days[]" autocomplete="off"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option></select></td>
+       <td><input type="text" name="duration[]" id="duration_1" placeholder="Duration" autocomplete="off" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="any"></td>
+        <td><input type="number"  step="any" name="total_price[]" id="total_price_1" placeholder="Total Price"  class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
    </tr>
           </tbody>
        
