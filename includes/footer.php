@@ -15,6 +15,10 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+  <script src="dist/js/jquery-ui.min.js"></script>
+
+ <script src="dist/js/jquery-ui.min.js"></script>
 <script>
   $(function () {
     $('.select2').select2();
@@ -79,8 +83,8 @@ $('#datepicker').datepicker({
 <script src="dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script src="dist/js/autocomp.js"></script>
-
+<!--<script src="dist/js/autocomp.js"></script>-->
+	<script src="dist/js/script.js"></script>
 
 
 </body>

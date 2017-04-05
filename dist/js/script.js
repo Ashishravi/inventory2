@@ -1,17 +1,15 @@
-/**
- * Site : http:www.smarttutorials.net
- * @author muni
- */
-	      
 //adds extra table rows
 var i=$('#table_auto tr').length;
 $(".addmore").on('click',function(){
 	html = '<tr>';
 	html += '<td><input class="case" type="checkbox"/></td>';
+    html += ' <td><select id="type_'+i+'" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>';
 	html += '<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" name="price[]" id="price_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-	html += '<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+     html += '<td><input type="number" name="duration[]" id="duration_'+i+'" class="form-control" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+    html+= ' <td><select id="unit_dur_'+i+'" name="unit_dur_[]"><option value="1">Days</option><option value="2">Months</option><option value="3">Years</option></select></td>';
+   html += '<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '</tr>';
 	$('#table_auto').append(html);
@@ -84,49 +82,54 @@ $(document).on('change keyup blur','.changesNo',function(){
 	id = id_arr.split("_");
 	quantity = $('#quantity_'+id[1]).val();
 	price = $('#price_'+id[1]).val();
-	if( quantity!='' && price !='' ) $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(2) );	
+    duration = $('#duration_'+id[1]).val();
+	if( quantity!='' && price !='' && duration !='' ) $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)*parseFloat(duration)).toFixed(2) );	
 	calculateTotal();
 });
 
+/*
 $(document).on('change keyup blur','#tax',function(){
 	calculateTotal();
 });
 
+$(document).on('change keyup blur','#duration',function(){
+	calculateTotal();
+});
+*/
+
+$(document).on('change keyup blur','#freight',function(){
+	calculateTotal();
+});
+/*
+$(document).on('change keyup blur','#sub_total_freight',function(){
+	calculateTotal();
+});*/
+
 //total price calculation 
 function calculateTotal(){
-	subTotal = 0 ; total = 0; 
+	subTotal = 0 ; total = 0; subTotalFreight = 0;
 	$('.totalLinePrice').each(function(){
 		if($(this).val() != '' )subTotal += parseFloat( $(this).val() );
 	});
 	$('#subTotal').val( subTotal.toFixed(2) );
-	tax = $('#tax').val();
-	if(tax != '' && typeof(tax) != "undefined" ){
-		taxAmount = subTotal * ( parseFloat(tax) /100 );
-		$('#taxAmount').val(taxAmount.toFixed(2));
-		total = subTotal + taxAmount;
-	}else{
-		$('#taxAmount').val(0);
-		total = subTotal;
-	}
-	$('#totalAftertax').val( total.toFixed(2) );
-	calculateAmountDue();
-}
-
-$(document).on('change keyup blur','#amountPaid',function(){
-	calculateAmountDue();
-});
-
-//due amount calculation
-function calculateAmountDue(){
-	amountPaid = $('#amountPaid').val();
-	total = $('#totalAftertax').val();
-	if(amountPaid != '' && typeof(amountPaid) != "undefined" ){
-		amountDue = parseFloat(total) - parseFloat( amountPaid );
-		$('.amountDue').val( amountDue.toFixed(2) );
-	}else{
-		total = parseFloat(total).toFixed(2);
-		$('.amountDue').val( total );
-	}
+	freight = parseFloat( $('#freight').val() );
+    if(freight != '' && typeof(freight) != "undefined" ){
+    subTotalFreight = subTotal + freight; 
+        $('#sub_total_freight').val(subTotalFreight.toFixed(2));
+        taxRate = 0.14;
+        kkcRate = 0.5;
+        swachBharat = 0.5;
+     $('#tax').val( (subTotalFreight*taxRate).toFixed(2) );
+     $('#swach_bharat').val( (subTotalFreight*swachBharat).toFixed(2) );
+      $('#kkc').val( (subTotalFreight*kkcRate).toFixed(2) );   
+	  
+        total = subTotalFreight + (subTotalFreight*taxRate) + (subTotalFreight*swachBharat) + (subTotalFreight*kkcRate) ;
+    
+	   $('#totalAftertax').val( total.toFixed(2) );
+    }else{
+        
+    }
+        
 }
 
 

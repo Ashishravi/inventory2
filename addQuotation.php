@@ -34,7 +34,7 @@ function selectCustomer(id,name) {
 }
 </script>
 
-      
+      	<script src="dist/js/script.js"></script>
       
       
     <section class="content-header">
@@ -55,9 +55,9 @@ function selectCustomer(id,name) {
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-	      <form role="form" method="post" action="set_quotation.php" enctype="multipart/form-data">
-              <div class="box-body">
-                             <div class="row">
+                <form role="form" method="post" action="set_quotation.php" enctype="multipart/form-data">
+                   <div class="box-body">
+                  <div class="row">
                <div class="col-md-6">
                                   <div class="form-group">
                   <label for="id">Customer ID</label>
@@ -92,121 +92,109 @@ function selectCustomer(id,name) {
                                  </div>
                   <hr>
                   
-                 
-   <table id="challan_table" class="table table-striped">
-        <thead>
-		            <tr>
-                    <th width="2%"><input id="check_all" class="formcontrol" type="checkbox"/></th>
-		              <th>Item</th>
-                        <th>Description</th>
-                        <th>Unit Price</th>
-                        <th>Quantity</th>
-                        <th>Units</th>
-                        <th>Duration</th>
-                        <th>Total Price</th>
-		            </tr>
-		            </thead>
-      <tbody>
-   <tr>
-       <td><input class="case" type="checkbox"/></td>
-       
-       <td><select id="type_1" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
-       
-    <td><input type="text" data-type="productName" name="item_description[]" id="item_description_1" class="autocomplete_txt" placeholder="Description" autocomplete="off"></td>
-       
-    <td><input type="number" step="any" name="unit_price[]" id="unit_price_1" autocomplete="off" placeholder="Unit Price" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
-       
-       <td><input type="number" step="any" name="qty[]" id="qty_1" autocomplete="off" placeholder="Quantity"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
-       <td><select id="unit_days_1" name="unit_days[]" autocomplete="off"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option></select></td>
-       <td><input type="text" name="duration[]" id="duration_1" placeholder="Duration" autocomplete="off" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="any"></td>
-        <td><input type="number"  step="any" name="total_price[]" id="total_price_1" placeholder="Total Price"  class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
-   </tr>
-          </tbody>
-       
-  </table>
-                  
-                  
-                  <div>
-                  <div style="float:right;display:block;" class="row">
-                  <button class="btn btn-danger delete" type="button">- Delete</button>
-      			<button class="btn btn-success addmore" type="button">+ Add More</button>
-                  <!--  <input type="button" onclick="add_row();" value="ADD ROW">-->
-  <!--<input type="submit" name="submit_row" value="SUBMIT">-->
+                
+                <div class='row'>
+						      		<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+						      			<table class="table table-bordered table-hover" id="table_auto">
+											<thead>
+												<tr>
+													<th width="2%"><input id="check_all" class="formcontrol" type="checkbox"/></th>
+                                                    <th>Type</th>
+													<th>Item No</th>
+													<th>Description</th>
+													<th>Unit Price</th>
+													<th>Quantity</th>
+                                                    <th>Units</th>
+                                                    <th>Duration</th>
+													<th>Total</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+                                                    
+													<td><input class="case" type="checkbox"/></td>
+                                                     <td><select id="type_1" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
+													<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_1" class="form-control autocomplete_txt" autocomplete="off"></td>
+													<td><input type="text" data-type="productName" name="itemName[]" id="itemName_1" class="form-control autocomplete_txt" autocomplete="off"></td>
+													<td><input type="number" name="price[]" id="price_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+													 <td><input type="number" name="duration[]" id="duration_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+                                                    <td><select id="unit_dur_1" name="unit_dur_[]"><option value="1">Days</option><option value="2">Months</option>
+                                                        <option value="3">Years</option></select></td>
+                                                   
+                                                    <td><input type="number" name="quantity[]" id="quantity_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+													<td><input type="number" name="total[]" id="total_1" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+												</tr>
+											</tbody>
+										</table>
+						      		</div>
+						      	</div>
+						      	
+						      	<div class='row'>
+						      		<div class='col-xs-12 col-sm-3 col-md-3 col-lg-3'>
+						      			<button class="btn btn-danger delete" type="button">- Delete</button>
+						      			<button class="btn btn-success addmore" type="button">+ Add More</button>
+						      		</div>
+						      		
+										<div class="col-md-6" style="float:right;">
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"> Total: ₹</div>
+													<input type="number" class="form-control" id="subTotal" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+												</div>
+											</div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Freight: ₹
+                                                    </div>
+                                                    <input type="number"  class="form-control" name="freight" id="freight" placeholder="Freight" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                </div>
+                                            </div>
+                                             <div class="form-group">
+                                                 <div class="input-group">
+                                                     <div class="input-group-addon">
+                                                        Sub Total: ₹
+                                                     </div>
+                                                     <input type="number"  class="form-control" name="sub_total_freight" id="sub_total_freight" placeholder="SubTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                 </div>
+                                            </div>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon">Tax: ₹</div>
+													<input type="number" class="form-control" id="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+												</div>
+											</div>
+                                             <div class="form-group">
+                                                 <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Swach Bharat: ₹
+                                                     </div>
+                                                     <input type="number"  class="form-control" name="swach_bharat" id="swach_bharat" placeholder="Swach Bharat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                 </div>
+                                            </div>
+                                             <div class="form-group">
+                                                 <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        KKC: ₹
+                                                     </div>
+                                                     <input type="number"  class="form-control" name="kkc" id="kkc" placeholder="KKC" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                 </div>
+                                            </div>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon">Total: ₹</div>
+													<input type="number" class="form-control" id="totalAftertax" placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+												</div>
+											</div>
+									</div>
+						      	</div>
+						      	
+	   
                  </div>
                       </div>
                   
-                  <hr>
-                  
-                  
-           <div class="row">
-               <div class="col-md-6">
-               
-                    </div>
-                <div class="col-md-6" style="float:right;">
-                <div class="form-group">
-                    <div class="input-group">
-                    <div class="input-group-addon">
-                    Total
-                  </div>
-	          <input type="number" class="form-control" name="total" id="total">
-                  </div>
-                    
-                    </div>
-                  
-                     <div class="form-group">
-	            <div class="input-group">
-                    <div class="input-group-addon">
-                    Freight
-                  </div>
-	          <input type="number"  class="form-control" name="freight" id="freight">
-                         </div></div>
-                        
-                   <div class="form-group">
-                         <div class="input-group">
-                    <div class="input-group-addon">
-                    Sub Total
-                  </div>
-	          <input type="number"  class="form-control" name="sub_total" id="sub_total">
-                       </div></div>
-                  
-                <div class="form-group">
-	           <div class="input-group">
-                    <div class="input-group-addon">
-                    Tax
-                  </div>
-	          <input type="number" class="form-control" name="tax" id="tax">
-                    </div></div>
-                          
-                  <div class="form-group">
-	            <div class="input-group">
-                    <div class="input-group-addon">
-                    Swach Bharat
-                  </div>
-	          <input type="number"  class="form-control" name="swach_bharat" id="swach_bharat">
-                  </div>
-                    </div>
-                          
-                  <div class="form-group">
-	            <div class="input-group">
-                    <div class="input-group-addon">
-                    KKC
-                  </div>
-	          <input type="number"  class="form-control" name="kkc" id="kkc">
-                      </div></div>
-                        <div class="form-group">
-	            <div class="input-group">
-                    <div class="input-group-addon">
-                    Total
-                  </div>
-	          <input type="number"  class="form-control" name="grand_total" id="grand_total">
-                            </div> </div>  
-                    
-               </div>
-                  </div>       
-                 
-                  
+                  <hr>   
 	      </div>
-	      <!-- /.box-body -->
 	
 	      <div class="box-footer">
 	        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
