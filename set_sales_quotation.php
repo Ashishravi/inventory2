@@ -11,12 +11,10 @@ $delivery_date=['del_date'];
 $user = "orders@gmail.com";
 
 //item details
- $item_type=$_POST['item_type'];
+ $item_type=$_POST['type'];
 $item_no = $_POST['itemNo'];
  $item_description=$_POST['itemName'];
  $unit_price=$_POST['price'];
- $duration=$_POST['duration'];
- $unit_days=$_POST['unit_dur'];
  $item_qty=$_POST['quantity'];
 $line_price = $_POST['total'];
 
@@ -50,7 +48,7 @@ if (mysqli_query($con, $sql1)) {
  {
   if($item_type[$i]!="" && $item_description[$i]!="" && $item_qty[$i]!="")
   { 
-      $sql1 = "INSERT INTO `table_quotation_item`(`s_no`,`type`, `desc`, `unit_price`, `qty`, `units`, `duration`, `tot`) VALUES ($last_id,'$item_type[$i]','$item_description[$i]',$unit_price[$i],$item_qty[$i],'$unit_days[$i]',$duration[$i],$line_price[$i])";
+      $sql1 = "INSERT INTO `table_quotation_item`(`s_no`,`type`, `desc`, `unit_price`, `qty`, `tot`) VALUES ($last_id,'$item_type[$i]','$item_description[$i]',$unit_price[$i],$item_qty[$i],$line_price[$i])";
       echo $sql1;
       
       if(! mysqli_query($con, $sql1) ){
@@ -65,6 +63,6 @@ if (mysqli_query($con, $sql1)) {
 
 //echo "prices inserted";
 
- header('location: viewquotation.php?id='.$last_id);
+ header('location: view_sales_quotation.php?id='.$last_id);
 
 ?>

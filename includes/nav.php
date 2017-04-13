@@ -33,17 +33,17 @@
         </li>
           
            <?php if ($_SESSION['name']=="orders"): ?>
-             <li class="treeview <?php if($currentPage =='addquotation' ){echo 'active';}?>">
-          <a href="addquotation.php">
-            <i  class="fa fa-edit"></i> <span>Add Quotation</span>
+             <li class="treeview <?php if($currentPage =='addRentalQuotation' ){echo 'active';}?>">
+          <a href="addRentalQuotation.php">
+            <i  class="fa fa-edit"></i> <span>Rental Quotation</span>
+          </a>
+        </li>
+            <li class="treeview <?php if($currentPage =='addSalesQuotation' ){echo 'active';}?>">
+          <a href="addSalesQuotation.php">
+            <i  class="fa fa-edit"></i> <span>Sales Quotation</span>
           </a>
         </li>
           
-            <li class="treeview <?php if($currentPage =='addorder' ){echo 'active';}?>">
-          <a href="addorder.php">
-            <i  class="fa fa-edit"></i> <span>Add Order</span>
-          </a>
-        </li>
             <?php endif; ?>
       
      

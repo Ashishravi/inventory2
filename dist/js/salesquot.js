@@ -1,5 +1,5 @@
 //adds extra table rows
-var i=$('#table_auto tr').length;
+var i=$('#table_sales_quot tr').length;
 $(".addmore").on('click',function(){
 	html = '<tr>';
 	html += '<td><input class="case" type="checkbox"/></td>';
@@ -7,14 +7,18 @@ $(".addmore").on('click',function(){
 	html += '<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" name="price[]" id="price_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-     html += '<td><input type="number" name="duration[]" id="duration_'+i+'" class="form-control" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-    html+= ' <td><select id="unit_dur_'+i+'" name="unit_dur_[]"><option value="1">Days</option><option value="2">Months</option><option value="3">Years</option></select></td>';
-   html += '<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+    html += '<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '</tr>';
-	$('#table_auto').append(html);
+	$('#table_sales_quot').append(html);
 	i++;
 });
+
+
+/*$(".addmore").on('click', function(){
+    alert("addmore");
+});*/
+
 
 //to check all checkboxes
 $(document).on('change','#check_all',function(){
@@ -82,28 +86,14 @@ $(document).on('change keyup blur','.changesNo',function(){
 	id = id_arr.split("_");
 	quantity = $('#quantity_'+id[1]).val();
 	price = $('#price_'+id[1]).val();
-    duration = $('#duration_'+id[1]).val();
-	if( quantity!='' && price !='' && duration !='' ) $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)*parseFloat(duration)).toFixed(2) );	
+	if( quantity!='' && price !='') $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(2) );	
 	calculateTotal();
 });
 
-/*
-$(document).on('change keyup blur','#tax',function(){
-	calculateTotal();
-});
-
-$(document).on('change keyup blur','#duration',function(){
-	calculateTotal();
-});
-*/
 
 $(document).on('change keyup blur','#freight',function(){
 	calculateTotal();
 });
-/*
-$(document).on('change keyup blur','#sub_total_freight',function(){
-	calculateTotal();
-});*/
 
 //total price calculation 
 function calculateTotal(){
@@ -129,10 +119,7 @@ function calculateTotal(){
     }else{
         
     }
-        
 }
-
-
 //It restrict the non-numbers
 var specialKeys = new Array();
 specialKeys.push(8,46); //Backspace

@@ -110,7 +110,7 @@
               <table id="godown" class="table table-bordered table-hover">
                 <thead>
                <tr>
-                  <th>Status</th>
+                  <th>Type</th>
                   <th>Customer Name</th>
                   <th>Edit</th>
                     <th>Create Order</th>
@@ -124,15 +124,19 @@
                 {
                 ?>
                 <tr>
-                       <td><?php echo $q_result['status'] ?></td>
+                       <td><?php echo $q_result['type'] ?></td>
                      <td><?php echo $q_result['customer_name'] ?></td>
                     <td><a class="btn btn-block btn-default" href="editquotation.php?id=<?php echo $q_result['s_no']; ?>"><i class="fa fa-edit"></i> Edit</a></td>
                 <td><a class="btn btn-block btn-default" href="createorder.php?id=<?php echo $q_result['s_no']; ?>"><i class="fa fa-eye"></i> Create</a></td>
-                    <td><a class="btn btn-block btn-default" href="viewquotation.php?id=<?php echo $q_result['s_no']; ?>"><i class="fa fa-eye"></i> View</a></td>
+                    <td><a class="btn btn-block btn-default" href="<?php 
+                        if($q_result['type']=="Rental"){echo "viewquotation.php?id=".$q_result['s_no'];}else{echo "view_sales_quotation.php?id=".$q_result['s_no'];}
+                        ?>"><i class="fa fa-eye"></i> View</a></td>
                 </tr>
                 <?php 
                 }
                 ?>
+               
+                    
                 </tbody>
                 <tfoot>
                 <tr>

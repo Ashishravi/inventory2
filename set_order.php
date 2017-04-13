@@ -85,7 +85,12 @@ $customer_id = $_POST['id'];
 $name = $_POST['name'];
 $date = $_POST['del_date'];
 $created_by = $_SESSION['user_id'];
-    $sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,delivery_add,customer_id, name,date, created_by) VALUES ('$new1','$new2','$new3','$new4','0','$description', '$delivery_address','$customer_id', '$name', '$date', '$created_by')";
+$quot = $_POST['quot'];
+   
+$sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,delivery_add,customer_id, name,date, created_by) VALUES ('$new1','$new2','$new3','$new4','0','$description', '$delivery_address','$customer_id', '$name', '$date', '$created_by')";
+
+
+$del = "";
 
 
 if(mysqli_query($con, $sql)){

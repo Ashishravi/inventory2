@@ -7,43 +7,18 @@
       <script src="dist/js/jquery-ui.min.js"></script>
       <script>
     
-$(document).ready(function(){
-	 $("#name").keyup(function(){
-		$.ajax({
-		type: "POST",
-		url: "readCustomerFromCache.php",
-		data:'keyword='+$(this).val(),
-		beforeSend: function(){
-			$("#name").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-		},
-		success: function(data){
-			$("#suggesstion-box").show();
-			$("#suggesstion-box").html(data);
-			$("#name").css("background","#FFF");
-             console.log("data");
-		}
-		});
-	});
-});
-
-function selectCustomer(id,name) {
-    console.log(name);
-    $("#id").val(id);
-    $("#suggesstion-box").hide();
-    $("#name").val(name);  
-}
+     
 </script>
 
-      	<script src="dist/js/script.js"></script>
-      
+      <script src="dist/js/rentalquot.js"></script>
       
     <section class="content-header">
       <h1>
-        New Quotation
+        New Rental Quotation
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">New Quotation</li>
+        <li class="active">New Rental Quotation</li>
       </ol>
     </section>
 
@@ -61,11 +36,11 @@ function selectCustomer(id,name) {
                <div class="col-md-6">
                                   <div class="form-group">
                   <label for="id">Customer ID</label>
-                  <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID">
+                  <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" autocomplete="off">
                 </div>
                   <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" autocomplete="off">
                      
                 </div>
                                   <div id="suggesstion-box"></div>
@@ -100,26 +75,30 @@ function selectCustomer(id,name) {
 												<tr>
 													<th width="2%"><input id="check_all" class="formcontrol" type="checkbox"/></th>
                                                     <th>Type</th>
-													<th>Item No</th>
+													<th width="10%">Item No</th>
 													<th>Description</th>
-													<th>Unit Price</th>
-													<th>Quantity</th>
-                                                    <th>Units</th>
-                                                    <th>Duration</th>
-													<th>Total</th>
+													<th width="10%">Unit Price</th>
+													
+                                                     <th width="10%">Duration</th>
+                                                    <th width="10%">Units</th>
+                                                   <th width="10%">Quantity</th>
+													<th width="10%">Total</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
                                                     
 													<td><input class="case" type="checkbox"/></td>
-                                                     <td><select id="type_1" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
+                                                     <td><select id="type_1" name="item_type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
 													<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_1" class="form-control autocomplete_txt" autocomplete="off"></td>
 													<td><input type="text" data-type="productName" name="itemName[]" id="itemName_1" class="form-control autocomplete_txt" autocomplete="off"></td>
 													<td><input type="number" name="price[]" id="price_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
 													 <td><input type="number" name="duration[]" id="duration_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
-                                                    <td><select id="unit_dur_1" name="unit_dur_[]"><option value="1">Days</option><option value="2">Months</option>
-                                                        <option value="3">Years</option></select></td>
+                                                    <td><select id="unit_dur_1" name="unit_dur[]">
+                                                        <option value="Days">Days</option>
+                                                         <option value="Weeks">Weeks</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Years">Years</option></select></td>
                                                    
                                                     <td><input type="number" name="quantity[]" id="quantity_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
 													<td><input type="number" name="total[]" id="total_1" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
@@ -139,7 +118,7 @@ function selectCustomer(id,name) {
 											<div class="form-group">
 												<div class="input-group">
 													<div class="input-group-addon"> Total: ₹</div>
-													<input type="number" class="form-control" id="subTotal" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+													<input type="number" step="any" class="form-control" name="subTotal" id="subTotal" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 												</div>
 											</div>
                                             <div class="form-group">
@@ -147,7 +126,7 @@ function selectCustomer(id,name) {
                                                     <div class="input-group-addon">
                                                         Freight: ₹
                                                     </div>
-                                                    <input type="number"  class="form-control" name="freight" id="freight" placeholder="Freight" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                    <input type="number" step="any" class="form-control" name="freight" id="freight" placeholder="Freight" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                 </div>
                                             </div>
                                              <div class="form-group">
@@ -155,13 +134,13 @@ function selectCustomer(id,name) {
                                                      <div class="input-group-addon">
                                                         Sub Total: ₹
                                                      </div>
-                                                     <input type="number"  class="form-control" name="sub_total_freight" id="sub_total_freight" placeholder="SubTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                     <input type="number" step="any" class="form-control" name="sub_total_freight" id="sub_total_freight" placeholder="SubTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                  </div>
                                             </div>
 											<div class="form-group">
 												<div class="input-group">
 													<div class="input-group-addon">Tax: ₹</div>
-													<input type="number" class="form-control" id="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+													<input type="number" step="any" class="form-control" id="tax" name="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 												</div>
 											</div>
                                              <div class="form-group">
@@ -169,7 +148,7 @@ function selectCustomer(id,name) {
                                                     <div class="input-group-addon">
                                                         Swach Bharat: ₹
                                                      </div>
-                                                     <input type="number"  class="form-control" name="swach_bharat" id="swach_bharat" placeholder="Swach Bharat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                     <input type="number" step="any"  class="form-control" name="swach_bharat" id="swach_bharat" placeholder="Swach Bharat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                  </div>
                                             </div>
                                              <div class="form-group">
@@ -177,13 +156,13 @@ function selectCustomer(id,name) {
                                                     <div class="input-group-addon">
                                                         KKC: ₹
                                                      </div>
-                                                     <input type="number"  class="form-control" name="kkc" id="kkc" placeholder="KKC" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                     <input type="number" step="any" class="form-control" name="kkc" id="kkc" placeholder="KKC" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                  </div>
                                             </div>
 											<div class="form-group">
 												<div class="input-group">
 													<div class="input-group-addon">Total: ₹</div>
-													<input type="number" class="form-control" id="totalAftertax" placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+													<input type="number" step="any" class="form-control" name="totalAftertax" id="totalAftertax" placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 												</div>
 											</div>
 									</div>
@@ -195,7 +174,7 @@ function selectCustomer(id,name) {
                   
                   <hr>   
 	      </div>
-	
+	 <input  type="hidden" value="Rentls" name="quot_type">
 	      <div class="box-footer">
 	        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
 	      </div>

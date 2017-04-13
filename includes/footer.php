@@ -55,6 +55,34 @@
       "autoWidth": false
     });
   });
+    
+    $(document).ready(function(){
+	 $("#name").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "readCustomerFromCache.php",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#name").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#name").css("background","#FFF");
+             console.log("data");
+		}
+		});
+	});
+});
+
+function selectCustomer(id,name) {
+    console.log(name);
+    $("#id").val(id);
+    $("#suggesstion-box").hide();
+    $("#name").val(name);  
+}
+     
+    
 </script>
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 
@@ -84,8 +112,8 @@ $('#datepicker').datepicker({
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!--<script src="dist/js/autocomp.js"></script>-->
-	<script src="dist/js/script.js"></script>
-
-
+<!--	<script src="dist/js/script.js"></script>-->
+<script src="dist/js/rentalquot.js"></script>
+	<script src="dist/js/salesquot.js"></script>
 </body>
 </html>

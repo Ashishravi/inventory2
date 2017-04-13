@@ -54,7 +54,6 @@ $items = mysqli_query($con, $quotation_items);
     <td>$row[desc]</td>
     <td>$row[unit_price]</td>
     <td>$row[qty]</td>
-    <td>$row[duration] $row[units]</td>
     <td>$row[tot]</td>
     </tr>";
     }
@@ -71,7 +70,7 @@ $items = mysqli_query($con, $quotation_items);
         <div class="col-xs-12">
           <h2 class="page-header">
             <i class="fa fa-globe"></i> YoungMan India Pvt. Ltd.
-            <medium class="pull-right">Rental Quotation</medium>
+            <medium class="pull-right">Sales Quotation</medium>
           </h2>
         </div>
         <!-- /.col -->
@@ -118,10 +117,8 @@ $items = mysqli_query($con, $quotation_items);
                 <th>S. No.</th>
                 <th>Type</th>
                 <th>Description</th>
-             
               <th>Unit Price</th>
                  <th>Qty</th>
-              <th>Duration</th>
                 <th>Total</th>
             </tr>
             </thead>
@@ -131,7 +128,6 @@ $items = mysqli_query($con, $quotation_items);
                 <th>Total</th>
                 <th></th>
                 <th></th>
-              <th></th>
               <th></th>
               <th></th>
                 <th>₹<?php echo $result['total'];?></th>
