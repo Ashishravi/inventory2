@@ -93,7 +93,7 @@
       </div>
     </div>
     <div id="menu2" class="tab-pane fade">
-            <h3>Quotationss</h3>
+            <h3>Quotations</h3>
       <div class="row">
         <!-- Left col -->
         <div class="col-md-12">

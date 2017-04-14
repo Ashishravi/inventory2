@@ -6,7 +6,7 @@ include("includes/dbcon.php");
 $customer_id = $_POST['id'];
 $customer_name = $_POST['name'];
 $delivery_address = $_POST['delivery_address'];
-$delivery_date=['del_date'];
+$delivery_date= $_POST['del_date'];
 
 $user = "orders@gmail.com";
 

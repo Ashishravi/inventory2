@@ -8,6 +8,17 @@
       <script>
     
 $(document).ready(function(){
+    
+    $("[name='taxCheck']").change(function(){
+    if($(this).val() == 'tax') {
+        $('#cform').css({display:'none'});
+        $('#tax').css({display:'inline-block'});
+    } else if($(this).val() == 'cform'){
+        $('#tax').css({display:'none'});
+        $('#cform').css({display:'inline-block'});
+    }
+});
+    
 	 $("#name").keyup(function(){
 		$.ajax({
 		type: "POST",
@@ -128,7 +139,25 @@ function selectCustomer(id,name) {
 						      			<button class="btn btn-danger delete" type="button">- Delete</button>
 						      			<button class="btn btn-success addmore" type="button">+ Add More</button>
 						      		</div>
-						      		
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="taxCheck">Include C.Form OR Tax</label>
+                                            <div id="radioOptions">
+                                                <div class="form-check">
+                                                <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="taxCheck" id="cformChk" value="cform">
+                                                C Form
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="taxCheck" id="taxChk" value="tax">
+                                                Tax
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 										<div class="col-md-6" style="float:right;">
 											<div class="form-group">
 												<div class="input-group">
@@ -153,24 +182,24 @@ function selectCustomer(id,name) {
                                                  </div>
                                             </div>
 											     
-                                            <div class="form-group">
+                                            <div class="form-group" id="tax">
                                                  <div class="input-group">
                                                     <div class="input-group-addon">
                                                        Tax: ₹
                                                      </div>
-                                            <input type="number" step="any" class="form-control" id="tax" name="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                            <input type="number" step="any" class="form-control" id="tax" name="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value=0>
 										 </div>
 											</div>
                                                      <input type="hidden" step="any"  class="form-control" name="swach_bharat" id="swach_bharat" placeholder="Swach Bharat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                            
                                                    <!--Storing c form in kkc -->
                                                  
-                                            <div class="form-group">
+                                            <div class="form-group" id="cform">
                                                  <div class="input-group">
                                                     <div class="input-group-addon">
                                                         C Form : ₹
                                                      </div>
-                                                     <input type="number" step="any" class="form-control" name="kkc" id="cform" placeholder="C Form" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                     <input type="number" step="any" class="form-control" name="kkc" id="cform" placeholder="C Form" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"  value=0 >
                                                  </div>
                                             </div>
 											<div class="form-group">

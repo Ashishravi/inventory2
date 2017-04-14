@@ -72,7 +72,7 @@ $(document).on('focus','.autocomplete_txt',function(){
 	  		
 			$('#itemNo_'+id[1]).val(names[0]);
 			$('#itemName_'+id[1]).val(names[1]);
-			$('#quantity_'+id[1]).val(1);
+			$('#quantity_'+id[1]).val();
 			$('#price_'+id[1]).val(names[2]);
 			$('#total_'+id[1]).val( 1*names[2] );
 			calculateTotal();
