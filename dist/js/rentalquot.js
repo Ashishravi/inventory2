@@ -1,10 +1,10 @@
 //adds extra table rows
+var i_type = "Item";
 var i=$('#table_auto tr').length;
 $(".addmore").on('click',function(){
-    console.log("hello");
 	html = '<tr>';
 	html += '<td><input class="case" type="checkbox"/></td>';
-    html += ' <td><select id="type_'+i+'" name="item_type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>';
+    html += ' <td><select id="type_'+i+'" name="item_type[]" class="itemType"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>';
 	html += '<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" name="price[]" id="price_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
@@ -29,13 +29,17 @@ $(".delete").on('click', function() {
 	calculateTotalRent();
 });
 
+$('.itemType').change(function() {
+i_type= $(this).find(':selected').attr('value');
+
+});
+
 //autocomplete script
 $(document).on('focus','.autocomplete_txt',function(){
 	type = $(this).data('type');
-	
 	if(type =='productCode' )autoTypeNo=0;
-	if(type =='productName' )autoTypeNo=1; 	
-	
+	if(type =='productName' )autoTypeNo=1;
+   /* console.log(i_type);*/
 	$(this).autocomplete({
 		source: function( request, response ) {
 			$.ajax({
@@ -44,7 +48,8 @@ $(document).on('focus','.autocomplete_txt',function(){
 				method: 'post',
 				data: {
 				   name_startsWith: request.term,
-				   type: type
+				   type: type,
+                   i_type: i_type 
 				},
 				 success: function( data ) {
 					 response( $.map( data, function( item ) {

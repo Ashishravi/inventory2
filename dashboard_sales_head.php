@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                 <?php
-                $sql = mysqli_query($con,"SELECT * FROM orders WHERE created_by = '".$_SESSION['user_id']."'");
+                $sql = mysqli_query($con,"SELECT * FROM orders");
                 while($result = mysqli_fetch_array($sql))
                 {
                 ?>
@@ -120,7 +120,7 @@
                 </thead>
                 <tbody>
                 <?php
-                $quotation = mysqli_query($con,"SELECT * FROM table_quotation WHERE status='quot' AND createdby='". $_SESSION['user_id']."'");
+                $quotation = mysqli_query($con,"SELECT * FROM table_quotation WHERE status='quot'");
                 while($q_result = mysqli_fetch_array($quotation))
                 {
                 ?>

@@ -8,7 +8,7 @@ $customer_name = $_POST['name'];
 $delivery_address = $_POST['delivery_address'];
 $delivery_date= $_POST['del_date'];
 
-$user = "orders@gmail.com";
+$user = $_SESSION['user_id'];
 
 //item details
  $item_type=$_POST['item_type'];

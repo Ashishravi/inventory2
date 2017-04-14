@@ -54,10 +54,9 @@ $result = mysqli_fetch_array($result_i);
                   <label for="name">Name</label>
                   <input type="text" class="form-control" name="name" id="name" value="<?php echo $result['customer_name']; ?>">
                 </div>
-               <div class="form-group">
-                  <label for="description">Description</label>
-                  <input type="text" class="form-control" name="description" id="description" placeholder="Description">
-                </div>
+              
+                  <input type="hidden" class="form-control" name="description" id="description" value="Description">
+            
                                  </div>
                   <div class="col-md-6">
                                  <div class="form-group">
