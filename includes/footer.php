@@ -38,6 +38,22 @@
       "info": true,
       "autoWidth": true
     });
+       $('#orders').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+       $('#quotations').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
     $('#pending').DataTable({
       "paging": true,
       "lengthChange": true,

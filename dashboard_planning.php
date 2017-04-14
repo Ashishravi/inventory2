@@ -43,9 +43,9 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
                 <tr>
                   <th>Job Order</th>
                   <th>Date of Delivery/Pickup</th>
-                  <th>Attachments</th>
-                  <th>Print</th>
-                  <th>Documents</th>
+                  <th>View Order</th>
+                  <th>View Challan</th>
+                  <th>Add Challan</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
                     
                  <td><?php echo $result['job_order'] ?></td>
                  <td><?php echo $result['date'] ?></td>
-                 <td><a class="btn btn-block btn-default" href="vieworder.php?id=<?php echo $result['id']; ?>"><i class="fa fa-eye"></i> View</a></td>
+                 <td><a class="btn btn-block btn-primary" href="vieworder.php?id=<?php echo $result['id']; ?>"><i class="fa fa-eye"></i> View</a></td>
                  <td>
                     <form action="view_challan.php?id=<?php echo $result['job_order']; ?>" method="post">
                      <?php 
@@ -67,28 +67,26 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
                   //  echo $get_challan;
                    $challan_ids = mysqli_query($con,$get_challan);
                         ?>
-                        
+                        <div class="row" style="float:center;">
                            <div class="form-group">
-                   <label  class="col-sm-2 control-label"
-                              for="challan_type">ID</label>
-                            <div class="col-sm-10">
                    <select class="custom-select form-control" name="challan_id" id="challan_id" required>
-                         <option value="" selected disabled>Please select</option>
+                         <option value="" selected disabled>Select Challan</option>
                        <?php
 		           		foreach ($challan_ids as $row) { ?>
                        <option value="<?php echo $row['challan_id'] ?>"><?php echo $row['challan_id'] ?></option>
                        <?php }	?>
                        
                     </select>
-                           </div>
+                         <button class="btn btn-info" type="submit" name="formpdf_btn"><i class="fa fa-print"></i> View</button> 
                 </div>
-                        <button class="btn btn-block btn-default" type="submit" name="formpdf_btn"><i class="fa fa-print"></i> Print</button>
+                        
+                            </div>
                      </form>
                     
                     </td>
                 <td>
                   
-                    <a class="btn btn-block btn-default" href="addForm.php?id=<?php echo $result['id']; ?>"><i class="fa fa-edit"></i> Add Form</a></td>
+                    <a class="btn btn-block btn-success" href="addForm.php?id=<?php echo $result['id']; ?>"><i class="fa fa-edit"></i> New Challan</a></td>
                 </tr>
                 <?php 
                 }
@@ -97,9 +95,10 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
                 <tfoot>
                 <tr>
                    <th>Job Order</th>
-                   <th>Date of Delivery/Pickup</th>
-                   <th>Attachments</th>
-                   <th>Documents</th>
+                  <th>Date of Delivery/Pickup</th>
+                  <th>View Order</th>
+                  <th>View Challan</th>
+                  <th>Add Challan</th>
                 </tr>
                 </tfoot>
               </table>

@@ -38,11 +38,6 @@ $cust_det = mysqli_fetch_array($customer);
 	          <strong>Order No:
 	            </strong><?php echo $result['job_order']; ?>
 	          </blockquote>
-                
-                 <blockquote>
-	          <strong>Remarks:
-	            </strong><?php echo $result['description']; ?>
-	          </blockquote>
                  <blockquote>
 	          <strong>Mailing Address:
 	            </strong><?php echo $cust_det['mailing_address']; ?>

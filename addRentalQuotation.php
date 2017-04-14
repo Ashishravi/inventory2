@@ -113,7 +113,7 @@ function selectCustomer(id,name) {
 												<tr>
                                                     
 													<td><input class="case" type="checkbox"/></td>
-                                                     <td><select id="type_1" name="item_type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
+                                                     <td><select id="type_1" name="item_type[]" class="itemType"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
 													<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_1" class="form-control autocomplete_txt" autocomplete="off"></td>
 													<td><input type="text" data-type="productName" name="itemName[]" id="itemName_1" class="form-control autocomplete_txt" autocomplete="off"></td>
 													<td><input type="number" name="price[]" id="price_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
