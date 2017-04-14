@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 13, 2017 at 10:28 PM
+-- Generation Time: Apr 14, 2017 at 12:10 PM
 -- Server version: 5.6.35
 -- PHP Version: 5.6.30
 
@@ -70,8 +70,10 @@ CREATE TABLE `challan_items` (
 CREATE TABLE `challan_item_relation` (
   `challan_id` int(6) NOT NULL,
   `item_id` varchar(10) NOT NULL,
+  `item_description` varchar(200) NOT NULL,
   `job_order` varchar(20) DEFAULT NULL,
   `quantity` int(9) NOT NULL,
+  `unit_price` float(7,2) NOT NULL DEFAULT '0.00',
   `total_price` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -79,9 +81,18 @@ CREATE TABLE `challan_item_relation` (
 -- Dumping data for table `challan_item_relation`
 --
 
-INSERT INTO `challan_item_relation` (`challan_id`, `item_id`, `job_order`, `quantity`, `total_price`) VALUES
-(1490726533, '2', '2', 1, 0),
-(1490726533, '1', '2', 1, 0);
+INSERT INTO `challan_item_relation` (`challan_id`, `item_id`, `item_description`, `job_order`, `quantity`, `unit_price`, `total_price`) VALUES
+(1490726533, '2', '', '2', 1, 0.00, 0),
+(1490726533, '1', '', '2', 1, 0.00, 0),
+(1490726534, '1', '', '3', 1, 0.00, 0),
+(1490726535, '1', '', '1492155628_12', 1, 0.00, 0),
+(1490726535, '2', '', '1492155628_12', 1, 0.00, 0),
+(1490726536, '1', '', '1492155628_12', 1, 0.00, 0),
+(1490726536, '2', '', '1492155628_12', 1, 0.00, 0),
+(1490726536, '3', '', '1492155628_12', 1, 0.00, 0),
+(1490726537, '1', 'Fibre Glass Ladder', '1492155628_12', 1, 450.00, 450),
+(1490726537, '2', 'Aluminium Scaffold', '1492155628_12', 1, 300.00, 300),
+(1490726538, '2', 'Aluminium Scaffold', '1492155628_12', 1, 300.00, 300);
 
 -- --------------------------------------------------------
 
@@ -121,12 +132,14 @@ CREATE TABLE `location_item_relation` (
 --
 
 INSERT INTO `location_item_relation` (`location_id`, `item_id`, `quantity`, `opening_qty`, `opening_qty_date`) VALUES
-('1', '1', 43, 0, '0000-00-00'),
-('1', '3', 15, 0, '0000-00-00'),
-('2', '1', 99, 0, '0000-00-00'),
-('2', '2', 99, 0, '0000-00-00'),
-('2', '3', 100, 0, '0000-00-00'),
-('1', '2', 1, 0, '0000-00-00');
+('1', '1', 44, 0, '0000-00-00'),
+('1', '3', 16, 0, '0000-00-00'),
+('2', '1', 97, 0, '0000-00-00'),
+('2', '2', 95, 0, '0000-00-00'),
+('2', '3', 99, 0, '0000-00-00'),
+('1', '2', 4, 0, '0000-00-00'),
+('1492155628', '1', 1, 0, '0000-00-00'),
+('1492155628', '2', 1, 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -162,7 +175,12 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `job_order`, `work_order_image`, `security_letter_image`, `rental_payment_image`, `security_neg_image`, `status`, `description`, `invoice_no`, `reason`, `billing_add`, `mailing_add`, `delivery_add`, `phone`, `name`, `email`, `date`, `created_by`, `timestamp`) VALUES
-(2, '{-4}', '2', 'uploads/1_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/2_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/3_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/4_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 1, 'no description', NULL, '', NULL, NULL, ' D8 guljhgg', NULL, 'Diego Rodriguez', NULL, '13/04/2017', 'orders@gmail.com', '2017-04-13 17:45:04');
+(2, '{-4}', '2', 'uploads/1_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/2_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/3_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/4_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 1, 'no description', NULL, '', NULL, NULL, ' D8 guljhgg', NULL, 'Diego Rodriguez', NULL, '13/04/2017', 'vikas@gmail.com', '2017-04-13 17:45:04'),
+(3, '{-4}', '3', 'uploads/1_4f5810cc33c4e87887a93ae1a5d1f3a2.jpg', 'uploads/2_4f5810cc33c4e87887a93ae1a5d1f3a2.jpg', 'uploads/3_4f5810cc33c4e87887a93ae1a5d1f3a2.jpg', 'uploads/4_4f5810cc33c4e87887a93ae1a5d1f3a2.jpg', 1, 'This is a description', NULL, '', NULL, NULL, ' D8 guljhgg', NULL, 'Diego Rodriguez', NULL, '14/04/2017', 'ashish@gmail.com', '2017-04-14 07:23:09'),
+(4, '{-4}', '1492155628_12', 'uploads/1_25ad9fd9eda14023c438a86a86f3009a.jpeg', 'uploads/2_25ad9fd9eda14023c438a86a86f3009a.jpg', 'uploads/3_25ad9fd9eda14023c438a86a86f3009a.jpg', 'uploads/4_25ad9fd9eda14023c438a86a86f3009a.jpg', 1, 'Description', NULL, '', NULL, NULL, ' D-8 Gulmohar Park', NULL, 'Diego Rodriguez', NULL, '14/04/2017', 'vikas@gmail.com', '2017-04-14 07:40:28'),
+(5, '{-3}', '1492177588_18', 'uploads/1_467898e83b6e348e04b2f5a3e1a4bacb.jpg', 'uploads/2_467898e83b6e348e04b2f5a3e1a4bacb.jpg', 'uploads/3_467898e83b6e348e04b2f5a3e1a4bacb.jpg', 'uploads/4_467898e83b6e348e04b2f5a3e1a4bacb.jpg', 1, 'no description', NULL, '', NULL, NULL, ' D-8, gulmohar park', NULL, 'Cool Cars', NULL, '21/04/2017', 'rajput@gmail.com', '2017-04-14 13:46:28'),
+(6, '{-3}', '1492195715_20', 'uploads/1_2711fcabd63952cb2a526b67bd35b136.jpg', 'uploads/2_2711fcabd63952cb2a526b67bd35b136.jpg', 'uploads/3_2711fcabd63952cb2a526b67bd35b136.jpg', 'uploads/4_2711fcabd63952cb2a526b67bd35b136.jpg', 1, 'Desc', NULL, '', NULL, NULL, ' D-8, Gulmohar Park', NULL, 'Cool Cars', NULL, '27/04/2017', 'vikas@gmail.com', '2017-04-14 18:48:35'),
+(7, '{-59}', '1492195931_13', 'uploads/1_d4d26be7aecc8be347dde803a08077e3.jpg', 'uploads/2_d4d26be7aecc8be347dde803a08077e3.jpg', 'uploads/3_d4d26be7aecc8be347dde803a08077e3.jpg', 'uploads/4_d4d26be7aecc8be347dde803a08077e3.jpg', 1, 'Description', NULL, '', NULL, NULL, ' D-8, Gulmohar Park', NULL, 'DisplayName2792', NULL, '26/04/2017', 'vikas@gmail.com', '2017-04-14 18:52:11');
 
 -- --------------------------------------------------------
 
@@ -248,7 +266,7 @@ CREATE TABLE `quickbooks_oauth` (
 --
 
 INSERT INTO `quickbooks_oauth` (`quickbooks_oauth_id`, `app_username`, `app_tenant`, `oauth_request_token`, `oauth_request_token_secret`, `oauth_access_token`, `oauth_access_token_secret`, `qb_realm`, `qb_flavor`, `qb_user`, `request_datetime`, `access_datetime`, `touch_datetime`) VALUES
-(3, 'DO_NOT_CHANGE_ME', '12345', 'qyprd3uJ3j1bFyqtJXV17pUGC9Sd3Gl76iV4j4EpG5zvTMMt', '7hNbjgvdingpZWiUQDaN0sm3vHRqMoG1PKXwqnfq', 'B3tFq40toINRF1Thfic7IPRe5e72kHZcVDOVN5tJOAzWmQZliRHcHfY2g/J3r7Q2YIxKe7ywOKz/ENgoPjd3+4Xw+CDendSvKa0nc/PMjzttX4ZUM8InwMrNhGMhVNkLxGHjt86JkPKW7vkiOZBJ2tdKAXNEfuoNNIbSXPF9eYvqD1TNhHndgusB49prqQ==', 'hj3xPeNypkUnXxWQ3XZ3OmQ8XkWMlwBBQSy0pzUQv2KIUBp7sv04eVq6KKYQht5Dr2O5O/G4/G4w0ET/ej2iQit3kW++qEhswKiD6bkBAVrlR3m4RoRceeM8HCE5/dEsYYI+W/0cgYyrvGobsbv7AWoyLnd5BO2/7Swu4IXbs6jsoc4dlZI=', '193514493219874', 'QBO', NULL, '2017-03-28 06:17:00', '2017-03-28 06:17:25', '2017-04-12 07:57:17');
+(3, 'DO_NOT_CHANGE_ME', '12345', 'qyprd3uJ3j1bFyqtJXV17pUGC9Sd3Gl76iV4j4EpG5zvTMMt', '7hNbjgvdingpZWiUQDaN0sm3vHRqMoG1PKXwqnfq', 'B3tFq40toINRF1Thfic7IPRe5e72kHZcVDOVN5tJOAzWmQZliRHcHfY2g/J3r7Q2YIxKe7ywOKz/ENgoPjd3+4Xw+CDendSvKa0nc/PMjzttX4ZUM8InwMrNhGMhVNkLxGHjt86JkPKW7vkiOZBJ2tdKAXNEfuoNNIbSXPF9eYvqD1TNhHndgusB49prqQ==', 'hj3xPeNypkUnXxWQ3XZ3OmQ8XkWMlwBBQSy0pzUQv2KIUBp7sv04eVq6KKYQht5Dr2O5O/G4/G4w0ET/ej2iQit3kW++qEhswKiD6bkBAVrlR3m4RoRceeM8HCE5/dEsYYI+W/0cgYyrvGobsbv7AWoyLnd5BO2/7Swu4IXbs6jsoc4dlZI=', '193514493219874', 'QBO', NULL, '2017-03-28 06:17:00', '2017-03-28 06:17:25', '2017-04-14 09:46:49');
 
 -- --------------------------------------------------------
 
@@ -333,18 +351,19 @@ CREATE TABLE `quickbooks_user` (
 
 CREATE TABLE `table_bundle` (
   `bundle_id` varchar(10) NOT NULL DEFAULT '',
-  `bundle_name` varchar(50) DEFAULT NULL
+  `bundle_name` varchar(50) DEFAULT NULL,
+  `value` float(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `table_bundle`
 --
 
-INSERT INTO `table_bundle` (`bundle_id`, `bundle_name`) VALUES
-('1', 'test'),
-('2', 'test2'),
-('3', 'test3'),
-('4', 'test4');
+INSERT INTO `table_bundle` (`bundle_id`, `bundle_name`, `value`) VALUES
+('1', 'test', 25.60),
+('2', 'test2', 25.60),
+('3', 'test3', 25.60),
+('4', 'test4', 25.60);
 
 -- --------------------------------------------------------
 
@@ -355,15 +374,21 @@ INSERT INTO `table_bundle` (`bundle_id`, `bundle_name`) VALUES
 CREATE TABLE `table_challan` (
   `challan_id` int(6) NOT NULL,
   `pickup_loc_id` varchar(10) DEFAULT NULL,
-  `delivery_loc_id` varchar(10) DEFAULT NULL
+  `delivery_loc_id` varchar(10) DEFAULT NULL,
+  `type` char(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `table_challan`
 --
 
-INSERT INTO `table_challan` (`challan_id`, `pickup_loc_id`, `delivery_loc_id`) VALUES
-(1490726533, '2', '1');
+INSERT INTO `table_challan` (`challan_id`, `pickup_loc_id`, `delivery_loc_id`, `type`) VALUES
+(1490726533, '2', '1', 'Rental'),
+(1490726534, '1', '2', 'Rental'),
+(1490726535, '2', '1492155628', 'Rental'),
+(1490726536, '2', '1', 'Rental'),
+(1490726537, '2', '1', 'Pickup Challan'),
+(1490726538, '2', '1', 'Pickup Challan');
 
 -- --------------------------------------------------------
 
@@ -465,6 +490,7 @@ INSERT INTO `table_item_category_relation` (`item_id`, `category_id`) VALUES
 
 CREATE TABLE `table_location` (
   `location_id` varchar(10) NOT NULL DEFAULT '',
+  `location_type` char(10) NOT NULL,
   `address` varchar(300) DEFAULT NULL,
   `state` char(15) DEFAULT NULL,
   `pincode` int(6) DEFAULT NULL,
@@ -478,9 +504,13 @@ CREATE TABLE `table_location` (
 -- Dumping data for table `table_location`
 --
 
-INSERT INTO `table_location` (`location_id`, `address`, `state`, `pincode`, `name`, `mobile`, `alt_mobile`, `email`) VALUES
-('1', 'D-8, Gulmohar Park, New Delhi-110049', 'delhi', 110049, 'Vikas', '9650043051', '0', 'vikasmahato0@gmail.com'),
-('2', 'Greater Noida', 'Uttar Pradesh', 452222, 'Vanjul Jain', '987654321', '0', 'vanjul@gmail.com');
+INSERT INTO `table_location` (`location_id`, `location_type`, `address`, `state`, `pincode`, `name`, `mobile`, `alt_mobile`, `email`) VALUES
+('1', 'warehouse', 'D-8, Gulmohar Park, New Delhi-110049', 'delhi', 110049, 'Vikas', '9650043051', '0', 'vikasmahato0@gmail.com'),
+('1492155628', 'joborder', ' D-8 Gulmohar Park', NULL, NULL, NULL, NULL, NULL, NULL),
+('1492177588', 'joborder', ' D-8, gulmohar park', NULL, NULL, NULL, NULL, NULL, NULL),
+('1492195715', 'joborder', ' D-8, Gulmohar Park', NULL, NULL, NULL, NULL, NULL, NULL),
+('1492195931', 'joborder', ' D-8, Gulmohar Park', NULL, NULL, NULL, NULL, NULL, NULL),
+('2', 'warehouse', 'Greater Noida', 'Uttar Pradesh', 452222, 'Vanjul Jain', '987654321', '0', 'vanjul@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -535,12 +565,16 @@ CREATE TABLE `table_quotation` (
 --
 
 INSERT INTO `table_quotation` (`s_no`, `status`, `row_total`, `sub_total`, `freight`, `tax`, `swach_bharat`, `kkc`, `total`, `createdby`, `customer_id`, `customer_name`, `delivery_address`, `delivery_date`, `timestamp`, `type`, `objection`) VALUES
-(11, 'quot', 9900.00, 9925.00, 25.00, 1389.50, 49.63, 49.63, 11413.75, 'orders@gmail.com', '{-4}', 'Diego Rodriguez', 'D8 guljhgg', 'Array', '2017-04-12 16:10:15', 'Rental', 1),
-(12, 'quot', 1050.00, 1075.00, 25.00, 150.50, 537.50, 537.50, 2300.50, 'orders@gmail.com', '{-4}', 'Diego Rodriguez', 'D-8 Gulmohar Park', 'Array', '2017-04-13 03:11:31', 'Rental', 1),
-(13, 'quot', 1500.00, 1523.00, 23.00, 213.22, 761.50, 761.50, 3259.22, 'orders@gmail.com', '{-59}', 'DisplayName2792', 'D-8, Gulmohar Park', 'Array', '2017-04-13 07:29:19', 'Rental', 1),
-(14, 'quot', 1050.00, 1150.00, 100.00, 161.00, 575.00, 575.00, 2461.00, 'orders@gmail.com', '{-3}', 'Cool Cars', 'D-8, Gulmohar Park', 'Array', '2017-04-13 07:36:30', 'Rental', 0),
-(15, 'quot', 450.00, 473.00, 23.00, 66.22, 236.50, 236.50, 1012.22, 'orders@gmail.com', '{-3}', 'Cool Cars', 'D-8, gulmohar park', 'Array', '2017-04-13 15:06:27', 'Rentls', 0),
-(16, 'quot', 750.00, 775.00, 25.00, 108.50, 387.50, 387.50, 1658.50, 'orders@gmail.com', '{-59}', 'DisplayName2792', 'D-8, gulmohar park', 'Array', '2017-04-13 15:10:58', 'Sales', 0);
+(11, 'order', 9900.00, 9925.00, 25.00, 1389.50, 49.63, 49.63, 11413.75, 'vikas@gmail.com', '{-4}', 'Diego Rodriguez', 'D8 guljhgg', 'Array', '2017-04-12 16:10:15', 'Rental', 1),
+(12, 'order', 1050.00, 1075.00, 25.00, 150.50, 537.50, 537.50, 2300.50, 'ashish@gmail.com', '{-4}', 'Diego Rodriguez', 'D-8 Gulmohar Park', 'Array', '2017-04-13 03:11:31', 'Rental', 0),
+(13, 'order', 1500.00, 1523.00, 23.00, 213.22, 761.50, 761.50, 3259.22, 'vikas@gmail.com', '{-59}', 'DisplayName2792', 'D-8, Gulmohar Park', 'Array', '2017-04-13 07:29:19', 'Rental', 1),
+(14, 'quot', 1050.00, 1150.00, 100.00, 161.00, 575.00, 575.00, 2461.00, 'vikas@gmail.com', '{-3}', 'Cool Cars', 'D-8, Gulmohar Park', 'Array', '2017-04-13 07:36:30', 'Rental', 0),
+(15, 'quot', 450.00, 473.00, 23.00, 66.22, 236.50, 236.50, 1012.22, 'vikas@gmail.com', '{-3}', 'Cool Cars', 'D-8, gulmohar park', 'Array', '2017-04-13 15:06:27', 'Rental', 0),
+(16, 'quot', 750.00, 775.00, 25.00, 108.50, 387.50, 387.50, 1658.50, 'ashish@gmail.com', '{-59}', 'DisplayName2792', 'D-8, gulmohar park', 'Array', '2017-04-13 15:10:58', 'Sales', 0),
+(17, 'quot', 750.00, 775.00, 25.00, 112.37, 0.00, 15.50, 902.88, 'ashish@gmail.com', '{-3}', 'Cool Cars', 'D-8, gulmohar park', 'Array', '2017-04-14 13:33:19', 'Sales', 0),
+(18, 'order', 11850.00, 11875.00, 25.00, 1662.50, 59.38, 59.38, 13656.25, 'vikas@gmail.com', '{-3}', 'Cool Cars', 'D-8, gulmohar park', 'Array', '2017-04-14 13:43:57', 'Rentls', 1),
+(19, 'quot', 1550.00, 1574.00, 24.00, 220.36, 7.87, 7.87, 1810.10, 'vikas@gmail.com', '{-4}', 'Diego Rodriguez', '', 'Array', '2017-04-14 15:48:52', 'Rental', 0),
+(20, 'order', 12450.00, 12475.00, 25.00, 1746.50, 62.38, 62.38, 14346.25, 'vikas@gmail.com', '{-3}', 'Cool Cars', 'D-8, Gulmohar Park', 'Array', '2017-04-14 18:47:39', 'Rental', 1);
 
 -- --------------------------------------------------------
 
@@ -579,7 +613,15 @@ INSERT INTO `table_quotation_item` (`s_no`, `type`, `desc`, `unit_price`, `qty`,
 (14, 'Bundle', 'Fibre Glass Ladder', 450, 1, '2', 1, 450.00),
 (15, 'Item', 'Fibre Glass Ladder', 450, 1, 'Days', 3, 450.00),
 (16, 'Item', 'Fibre Glass Ladder', 450, 1, NULL, NULL, 450.00),
-(16, 'Item', 'Aluminium Scaffold', 300, 1, NULL, NULL, 300.00);
+(16, 'Item', 'Aluminium Scaffold', 300, 1, NULL, NULL, 300.00),
+(17, 'Item', 'Fibre Glass Ladder', 450, 1, NULL, NULL, 450.00),
+(17, 'Item', 'Aluminium Scaffold', 300, 1, NULL, NULL, 300.00),
+(18, 'Item', 'Fibre Glass Ladder', 450, 1, 'Days', 25, 11250.00),
+(18, 'Item', 'Aluminium Scaffold', 300, 1, 'Days', 2, 600.00),
+(19, 'Bundle', 'test2', 25, 1, 'Days', 2, 50.00),
+(19, 'Item', 'Aluminium Scaffold', 300, 1, 'Days', 5, 1500.00),
+(20, 'Item', 'Fibre Glass Ladder', 450, 1, 'Days', 21, 9450.00),
+(20, 'Item', 'Aluminium Scaffold', 300, 2, 'Days', 5, 3000.00);
 
 -- --------------------------------------------------------
 
@@ -598,14 +640,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `name`) VALUES
-('dispatch@gmail.com', '123456', 'dispatch'),
-('finance_account@gmail.com', '123456', ''),
-('finance_credit@gmail.com', '123456', 'finance'),
-('marketing@gmail.com', '123456', 'marketing'),
-('orders@gmail.com', '123456', 'orders'),
-('planning@gmail.com', '123456', 'planning'),
-('vikas', '123456', ''),
-('vikasmahato0@gmail.com', '123456', '');
+('ashish@gmail.com', '123456', 'sales'),
+('planning@gmail.com', '123456', 'ops_planning'),
+('rajput@gmail.com', '123456', 'sales_head'),
+('vikas@gmail.com', '123456', 'sales');
 
 --
 -- Indexes for dumped tables
@@ -782,7 +820,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `quickbooks_config`
 --
@@ -817,12 +855,12 @@ ALTER TABLE `quickbooks_ticket`
 -- AUTO_INCREMENT for table `table_challan`
 --
 ALTER TABLE `table_challan`
-  MODIFY `challan_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1490726534;
+  MODIFY `challan_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1490726539;
 --
 -- AUTO_INCREMENT for table `table_quotation`
 --
 ALTER TABLE `table_quotation`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --

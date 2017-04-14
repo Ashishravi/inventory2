@@ -26,13 +26,14 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview <?php if($currentPage =='dashboard' ){echo 'active';}?>">
+       
+          
+           <?php if ($_SESSION['name']=="sales" || $_SESSION['name']=="sales_head"): ?>
+           <li class="treeview <?php if($currentPage =='dashboard' ){echo 'active';}?>">
           <a href="dashboard_sales.php">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-          
-           <?php if ($_SESSION['name']=="orders"): ?>
              <li class="treeview <?php if($currentPage =='addRentalQuotation' ){echo 'active';}?>">
           <a href="addRentalQuotation.php">
             <i  class="fa fa-edit"></i> <span>Rental Quotation</span>
@@ -45,31 +46,26 @@
         </li>
           
             <?php endif; ?>
+           <?php if ($_SESSION['name']=="sales_head"): ?>
+          
+          <li class="treeview <?php if($currentPage =='viewall' ){echo 'active';}?>">
+          <a href="dashboard_sales_head.php">
+            <i  class="fa fa-edit"></i> <span>View All</span>
+          </a>
+        </li>
+          
+          
+          <?php endif; ?>
       
-     
+     <?php if ($_SESSION['name']=="ops_planning"): ?>
           
           
-           <?php if ($_SESSION['name']=="finance"): ?>
-          
-        <li class="treeview <?php if($currentPage =='pending' || $currentPage =='finished'){echo 'active';}?>">
-          <a href="#">
-            <i class="fa fa-money"></i> <span>View Orders</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li class="<?php if($currentPage =='finished'){echo 'active';}?>"><a href="finished.php"><i class="fa fa-circle-o"></i> Approved Orders</a></li>
-            <li class="<?php if($currentPage =='pending'){echo 'active';}?>"><a href="pending.php"><i class="fa fa-circle-o"></i> New Orders</a></li>
-              <li class="<?php if($currentPage =='dispatched'){echo 'active';}?>"><a href="dispatched.php"><i class="fa fa-circle-o"></i> Dispatched Orders</a></li>
-          </ul>
-        </li>
-          
-            <li class="treeview <?php if($currentPage =='accounts' ){echo 'active';}?>">
-          <a href="accounts.php">
-            <i class="fa fa-dashboard"></i> <span>Accounts</span>
+           
+             <li class="treeview <?php if($currentPage =='dashboard' ){echo 'active';}?>">
+          <a href="dashboard_planning.php">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-           <?php endif; ?>
-            
           
              <li class="treeview <?php if($currentPage =='inventory' ){echo 'active';}?>">
           <a href="inventory.php">
@@ -77,7 +73,7 @@
           </a>
         </li>
           
-          
+          <?php endif; ?>
              <li class="treeview <?php if($currentPage =='logout' ){echo 'active';}?>">
           <a href="logout.php">
             <i  class="fa fa-back"></i> <span>Logout</span>
