@@ -30,7 +30,9 @@ $items = mysqli_query($con, "SELECT * FROM location_item_relation WHERE location
         <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
-            <div class="box-header with-border">
+            <div class="box-header with-border">      
+                 <form role="form" method="post" action="add_challan.php" enctype="multipart/form-data">
+                <input type="file" name="fileToUpload" id="fileToUpload" class="btn btn-info pull-right">Add Attachment</input>
 	          <strong>Challan type:</strong> <?php echo $challan_type;?><br>
 	          <strong>From Location:</strong> <?php echo $location_from;?><br>
 	          <strong>To Location:</strong> <?php echo $location_to;?><br>
@@ -41,7 +43,7 @@ $items = mysqli_query($con, "SELECT * FROM location_item_relation WHERE location
        
             
          
-                <form role="form" method="post" action="add_challan.php">
+               
                    <div class="box-body">                  
                 <div class='row'>
 						      		<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>

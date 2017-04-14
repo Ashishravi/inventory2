@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","123456","quickbooks_php");
+$con = mysqli_connect("localhost","root","","quickbooks_php");
 
 // Check connection
 if (mysqli_connect_errno())

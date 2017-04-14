@@ -2,7 +2,7 @@
 class DBController {
 	private $host = "localhost";
 	private $user = "root";
-	private $password = "123456";
+	private $password = "";
 	private $database = "quickbooks_php";
 	private $conn;
 	
