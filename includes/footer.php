@@ -113,7 +113,7 @@ $('#datepicker').datepicker({
 <script src="dist/js/demo.js"></script>
 <!--<script src="dist/js/autocomp.js"></script>-->
 <!--	<script src="dist/js/script.js"></script>-->
-<script src="dist/js/rentalquot.js"></script>
-	<script src="dist/js/salesquot.js"></script>
+
+	
 </body>
 </html>

@@ -5,10 +5,6 @@
       <link href="dist/css/jquery-ui.min.css" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
       <script src="dist/js/jquery-ui.min.js"></script>
-      <script>
-    
-     
-</script>
 
       <script src="dist/js/rentalquot.js"></script>
       
@@ -188,3 +184,8 @@
   </div>
   <!-- /.content-wrapper -->
 <?php include("includes/footer.php"); ?>
+
+
+<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+  <script src="dist/js/jquery-ui.min.js"></script>
+<script src="dist/js/rentalquot.js"></script>

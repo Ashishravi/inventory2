@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 03, 2017 at 02:05 PM
+-- Generation Time: Apr 13, 2017 at 10:28 PM
 -- Server version: 5.6.35
 -- PHP Version: 5.6.30
 
@@ -61,14 +61,6 @@ CREATE TABLE `challan_items` (
   `total_price` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `challan_items`
---
-
-INSERT INTO `challan_items` (`id`, `challan_id`, `item_code`, `item_description`, `item_quantity`, `app_price`, `total_price`) VALUES
-(1, '1', '2', 'no dec', 2, '55', '110'),
-(2, '1', '3', 'descrio', 3, '10', '30');
-
 -- --------------------------------------------------------
 
 --
@@ -88,17 +80,8 @@ CREATE TABLE `challan_item_relation` (
 --
 
 INSERT INTO `challan_item_relation` (`challan_id`, `item_id`, `job_order`, `quantity`, `total_price`) VALUES
-(1, '1', 'HI206', 2, 0),
-(1, '2', 'HI206', 2, 325),
-(1, '3', 'HI206', 5, 55),
-(1490726463, '1', 'HI206', 5, 0),
-(1490726523, '1', 'HI206', 5, 0),
-(1490726524, '3', 'HI206', 2, 0),
-(1490726525, '3', 'HI206', 3, 0),
-(1490726526, '1', 'HI206', 5, 0),
-(1490726526, '2', 'HI206', 4, 0),
-(1490726527, '1', 'HI206', 7, 0),
-(1490726527, '2', 'HI206', 1, 0);
+(1490726533, '2', '2', 1, 0),
+(1490726533, '1', '2', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -138,12 +121,12 @@ CREATE TABLE `location_item_relation` (
 --
 
 INSERT INTO `location_item_relation` (`location_id`, `item_id`, `quantity`, `opening_qty`, `opening_qty_date`) VALUES
-('1', '1', 42, 0, '0000-00-00'),
-('1', '2', 3, 0, '0000-00-00'),
+('1', '1', 43, 0, '0000-00-00'),
 ('1', '3', 15, 0, '0000-00-00'),
-('2', '1', 31, 0, '0000-00-00'),
-('2', '2', 2, 0, '0000-00-00'),
-('2', '3', 5, 0, '0000-00-00');
+('2', '1', 99, 0, '0000-00-00'),
+('2', '2', 99, 0, '0000-00-00'),
+('2', '3', 100, 0, '0000-00-00'),
+('1', '2', 1, 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -153,7 +136,7 @@ INSERT INTO `location_item_relation` (`location_id`, `item_id`, `quantity`, `ope
 
 CREATE TABLE `orders` (
   `id` int(3) NOT NULL,
-  `customer_id` int(5) DEFAULT NULL,
+  `customer_id` varchar(8) DEFAULT NULL,
   `job_order` varchar(20) DEFAULT NULL,
   `work_order_image` varchar(100) DEFAULT NULL,
   `security_letter_image` varchar(100) NOT NULL,
@@ -179,27 +162,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `customer_id`, `job_order`, `work_order_image`, `security_letter_image`, `rental_payment_image`, `security_neg_image`, `status`, `description`, `invoice_no`, `reason`, `billing_add`, `mailing_add`, `delivery_add`, `phone`, `name`, `email`, `date`, `created_by`, `timestamp`) VALUES
-(1, 4, 'HI206', 'uploads/1_f2d088707a7a523c3a9e35c35129e53f.jpg', 'uploads/2_f2d088707a7a523c3a9e35c35129e53f.jpg', 'uploads/3_f2d088707a7a523c3a9e35c35129e53f.jpg', 'uploads/4_f2d088707a7a523c3a9e35c35129e53f.jpg', 1, 'This is a test', NULL, '', '1', '1', '1', '0', 'Vikas', 'example@email.com', '31/03/2017', '', '2017-04-03 16:44:42'),
-(2, NULL, NULL, 'uploads/1_744860e49e3b6fdc50fbe60aa8ed602d.jpg', 'uploads/2_744860e49e3b6fdc50fbe60aa8ed602d.jpg', 'uploads/3_744860e49e3b6fdc50fbe60aa8ed602d.jpg', 'uploads/4_744860e49e3b6fdc50fbe60aa8ed602d.jpg', 0, 'Another Delivery', NULL, '', '1', '1', '1', '0', 'Vikas', 'example@email.com', '31/03/2017', '', '2017-04-03 16:44:42'),
-(3, NULL, NULL, 'uploads/1_9700d18bae3fc8fa418de962f75746e3.jpg', 'uploads/2_9700d18bae3fc8fa418de962f75746e3.jpg', 'uploads/3_9700d18bae3fc8fa418de962f75746e3.jpg', 'uploads/4_9700d18bae3fc8fa418de962f75746e3.jpg', 0, 'asdad', NULL, '', 'dsfsd', 'asda', 'dfsf', NULL, 'sdfsdf', NULL, '27/04/2017', '', '2017-04-03 16:44:42'),
-(4, NULL, NULL, 'uploads/1_b6fa6107a6bff236f715069378492bac.jpeg', 'uploads/2_b6fa6107a6bff236f715069378492bac.jpg', 'uploads/3_b6fa6107a6bff236f715069378492bac.jpg', 'uploads/4_b6fa6107a6bff236f715069378492bac.jpg', 0, 'hgjhnmnb', NULL, '', 'fdgd', 'hhjghj', 'dsfsf', NULL, 'fsdf', NULL, '18/04/2017', '', '2017-04-03 16:44:42'),
-(5, NULL, NULL, 'uploads/1_b108d9566454055647f41a44a2326806.jpg', 'uploads/2_b108d9566454055647f41a44a2326806.jpg', 'uploads/3_b108d9566454055647f41a44a2326806.jpg', 'uploads/4_b108d9566454055647f41a44a2326806.jpg', 0, 'dgd', NULL, '', 'hfhf', 'ghfq', 'th', NULL, 'rh', NULL, '04/05/2017', '', '2017-04-03 16:44:42'),
-(6, NULL, NULL, 'uploads/1_ee1daff9b0a235054b957dc4fb35fe27.jpg', 'uploads/2_ee1daff9b0a235054b957dc4fb35fe27.jpg', 'uploads/3_ee1daff9b0a235054b957dc4fb35fe27.jpg', 'uploads/4_ee1daff9b0a235054b957dc4fb35fe27.jpg', 0, 'fsd', NULL, '', 'qaew', 'wewe', 'ewrwr', NULL, 'gggggggggg', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(7, NULL, NULL, 'uploads/1_bbbbe4219e00e3947ca152116118d11b.jpg', 'uploads/2_bbbbe4219e00e3947ca152116118d11b.jpg', 'uploads/3_bbbbe4219e00e3947ca152116118d11b.jpg', 'uploads/4_bbbbe4219e00e3947ca152116118d11b.jpg', 0, 'vikas', NULL, '', 'aadd', 'sadad', 'adasd', NULL, 'qweq', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(8, NULL, NULL, 'uploads/1_bdd7071a569c47095867897d85b738d7.png', 'uploads/2_bdd7071a569c47095867897d85b738d7.png', 'uploads/3_bdd7071a569c47095867897d85b738d7.png', 'uploads/4_bdd7071a569c47095867897d85b738d7.png', 0, 'vikas1', NULL, '', 'DASD', 'DASD', 'SDAD', NULL, 'ADASD', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(9, NULL, NULL, 'uploads/1_d455d6801e48600ec736ec777a5d224b.png', 'uploads/2_d455d6801e48600ec736ec777a5d224b.png', 'uploads/3_d455d6801e48600ec736ec777a5d224b.png', 'uploads/4_d455d6801e48600ec736ec777a5d224b.png', 0, 'vikas3', NULL, '', 'sdad', 'dasd', 'sadasd', NULL, 'adad', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(10, NULL, NULL, 'uploads/1_3636fb6570d6fac8b5754bddfde88344.png', 'uploads/2_3636fb6570d6fac8b5754bddfde88344.png', 'uploads/3_3636fb6570d6fac8b5754bddfde88344.png', 'uploads/4_3636fb6570d6fac8b5754bddfde88344.png', 0, 'hello world', NULL, '', 'ffsdf', 'adasd', 'dfs', NULL, 'ddsd', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(11, NULL, NULL, 'uploads/1_cbcc7d97779120602c0655713f47d304.png', 'uploads/2_cbcc7d97779120602c0655713f47d304.png', 'uploads/3_cbcc7d97779120602c0655713f47d304.png', 'uploads/4_cbcc7d97779120602c0655713f47d304.png', 0, 'testing', NULL, '', 'sfsfd', 'erwer', 'dfsdf', NULL, 'tesing', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(12, NULL, NULL, 'uploads/1_0d024db2bd1b5325c1a220e22b7807c7.jpg', 'uploads/2_0d024db2bd1b5325c1a220e22b7807c7.jpg', 'uploads/3_0d024db2bd1b5325c1a220e22b7807c7.jpg', 'uploads/4_0d024db2bd1b5325c1a220e22b7807c7.jpg', 0, 'testing123', NULL, '', 'weqwe', 'wqeqew', 'qweawe', NULL, 'eas', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(13, NULL, NULL, 'uploads/1_85ba4a89b9b19639c38eaac9b8ac159d.jpg', 'uploads/2_85ba4a89b9b19639c38eaac9b8ac159d.jpg', 'uploads/3_85ba4a89b9b19639c38eaac9b8ac159d.jpg', 'uploads/4_85ba4a89b9b19639c38eaac9b8ac159d.jpg', 0, 'testing123', NULL, '', 'weqwe', 'wqeqew', 'qweawe', NULL, 'eas', NULL, '01/04/2017', '', '2017-04-03 16:44:42'),
-(14, 534, NULL, 'uploads/1_164680e61dfe7f4a9729e633bd5fd7b5.png', 'uploads/2_164680e61dfe7f4a9729e633bd5fd7b5.png', 'uploads/3_164680e61dfe7f4a9729e633bd5fd7b5.png', 'uploads/4_164680e61dfe7f4a9729e633bd5fd7b5.png', 0, 'testing1234', NULL, '', 'fsdfwe', 'fsdf', 'dfsdfs', NULL, 'vikas', NULL, '29/04/2017', '', '2017-04-03 16:44:42'),
-(15, NULL, NULL, 'uploads/1_ffbec3e5c3288f019efe15db2594e385.png', 'uploads/2_ffbec3e5c3288f019efe15db2594e385.png', 'uploads/3_ffbec3e5c3288f019efe15db2594e385.png', 'uploads/4_ffbec3e5c3288f019efe15db2594e385.png', 0, 'ladders and chairs', NULL, '', 'gulmoher park', 'sriniwaspuri', 'sahoday', NULL, 'vikas', NULL, '12/04/2017', '', '2017-04-03 16:44:42'),
-(16, NULL, NULL, 'uploads/1_dfeac5f4df1150e76ec30fcefb4164ef.png', 'uploads/2_dfeac5f4df1150e76ec30fcefb4164ef.png', 'uploads/3_dfeac5f4df1150e76ec30fcefb4164ef.png', 'uploads/4_dfeac5f4df1150e76ec30fcefb4164ef.png', 0, 'ladders and chairs', NULL, '', 'gulmoher park', 'sriniwaspuri', 'sahoday', NULL, 'vikas', NULL, '12/04/2017', '', '2017-04-03 16:44:42'),
-(17, NULL, NULL, 'uploads/1_33531e4c647916eaa22c07dfd920102b.png', 'uploads/2_33531e4c647916eaa22c07dfd920102b.png', 'uploads/3_33531e4c647916eaa22c07dfd920102b.png', 'uploads/4_33531e4c647916eaa22c07dfd920102b.png', 0, 'ladders and chairs', NULL, '', 'gulmoher park', 'sriniwaspuri', 'sahoday', NULL, 'vikas', NULL, '12/04/2017', '', '2017-04-03 16:44:42'),
-(18, 0, NULL, 'uploads/1_7023fd406620dc05f44bcd8e9308f223.jpg', 'uploads/2_7023fd406620dc05f44bcd8e9308f223.jpg', 'uploads/3_7023fd406620dc05f44bcd8e9308f223.jpg', 'uploads/4_7023fd406620dc05f44bcd8e9308f223.jpg', 0, 'Description', NULL, '', NULL, NULL, ' Noida Sector 18, <br> Starbucks', NULL, '', NULL, '', 'dealinghand', '2017-04-03 17:38:26'),
-(19, 0, NULL, 'uploads/1_347554b8c24f1251166885673f14e9d6.jpg', 'uploads/2_347554b8c24f1251166885673f14e9d6.jpg', 'uploads/3_347554b8c24f1251166885673f14e9d6.jpg', 'uploads/4_347554b8c24f1251166885673f14e9d6.jpg', 0, 'Description', NULL, '', NULL, NULL, ' Noida Sector 18, <br> Starbucks', NULL, '', NULL, '', 'dealinghand', '2017-04-03 17:39:17'),
-(20, 0, NULL, 'uploads/1_37ea54e67cbbcead59ae1b43f8b0287c.jpg', 'uploads/2_37ea54e67cbbcead59ae1b43f8b0287c.jpg', 'uploads/3_37ea54e67cbbcead59ae1b43f8b0287c.jpg', 'uploads/4_37ea54e67cbbcead59ae1b43f8b0287c.png', 0, 'This is a description', NULL, '', NULL, NULL, ' Noida Sector 18, <br> Starbucks', NULL, '', NULL, '', 'dealinghand', '2017-04-03 17:42:09'),
-(21, 54, NULL, 'uploads/1_eddd568ff7aad0fb9b88d3c63354a584.jpg', 'uploads/2_eddd568ff7aad0fb9b88d3c63354a584.jpg', 'uploads/3_eddd568ff7aad0fb9b88d3c63354a584.jpg', 'uploads/4_eddd568ff7aad0fb9b88d3c63354a584.jpg', 0, 'This is a description', NULL, '', NULL, NULL, ' Noida Sector 18, <br> Starbucks', NULL, 'Vanjul Jain', NULL, ' 12/03/2016', 'dealinghand', '2017-04-03 17:45:35');
+(2, '{-4}', '2', 'uploads/1_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/2_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/3_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 'uploads/4_a3ee136c41f8495f4c68ebb8fc349fee.jpg', 1, 'no description', NULL, '', NULL, NULL, ' D8 guljhgg', NULL, 'Diego Rodriguez', NULL, '13/04/2017', 'orders@gmail.com', '2017-04-13 17:45:04');
 
 -- --------------------------------------------------------
 
@@ -208,19 +171,23 @@ INSERT INTO `orders` (`id`, `customer_id`, `job_order`, `work_order_image`, `sec
 --
 
 CREATE TABLE `qb_cache_customer` (
-  `customer_id` int(6) NOT NULL,
-  `customer_name` varchar(40) NOT NULL,
-  `billing_address` varchar(300) NOT NULL,
-  `credit_limit` float(8,2) NOT NULL
+  `customer_id` varchar(8) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `customer_name` varchar(40) DEFAULT NULL,
+  `billing_address` varchar(300) DEFAULT NULL,
+  `mailing_address` varchar(300) NOT NULL,
+  `credit_limit` float(8,2) DEFAULT NULL,
+  `outstanding` float(7,2) NOT NULL DEFAULT '0.00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `qb_cache_customer`
 --
 
-INSERT INTO `qb_cache_customer` (`customer_id`, `customer_name`, `billing_address`, `credit_limit`) VALUES
-(1, 'Vikas Prasad Mahato', 'D-8\r\nGulmohar Park', 400000.00),
-(2, 'Vanjul Jain', 'Greater Noida', 500000.00);
+INSERT INTO `qb_cache_customer` (`customer_id`, `customer_name`, `billing_address`, `mailing_address`, `credit_limit`, `outstanding`) VALUES
+('{-3}', 'Cool Cars', '65 Ocean Dr.\n<br>\n<br>Half Moon Bay,  CA 94213\n<br>', 'D-8<br>Gulmohar Park<br>New Delh<br>110049', 290.00, 0.00),
+('{-4}', 'Diego Rodriguez', '321 Channing\n<br>\n<br>Palo Alto,  CA 94303\n<br>', 'D-8<br>Gulmohar Park<br>New Delh<br>110049', 5000.00, 0.00),
+('{-59}', 'DisplayName2792', '123 Main St\n<br>\n<br>Mountain View,  CA 94043\n<br>United States', 'D-8<br>Gulmohar Park<br>New Delh<br>110049', 0.00, 0.00),
+('{-5}', 'Dukes Basketball Camp', '25 Court St.\n<br>\n<br>Tucson,  AZ 85719\n<br>', 'D-8<br>Gulmohar Park<br>New Delh<br>110049', 0.00, 0.00);
 
 -- --------------------------------------------------------
 
@@ -281,7 +248,7 @@ CREATE TABLE `quickbooks_oauth` (
 --
 
 INSERT INTO `quickbooks_oauth` (`quickbooks_oauth_id`, `app_username`, `app_tenant`, `oauth_request_token`, `oauth_request_token_secret`, `oauth_access_token`, `oauth_access_token_secret`, `qb_realm`, `qb_flavor`, `qb_user`, `request_datetime`, `access_datetime`, `touch_datetime`) VALUES
-(3, 'DO_NOT_CHANGE_ME', '12345', 'qyprd3uJ3j1bFyqtJXV17pUGC9Sd3Gl76iV4j4EpG5zvTMMt', '7hNbjgvdingpZWiUQDaN0sm3vHRqMoG1PKXwqnfq', 'B3tFq40toINRF1Thfic7IPRe5e72kHZcVDOVN5tJOAzWmQZliRHcHfY2g/J3r7Q2YIxKe7ywOKz/ENgoPjd3+4Xw+CDendSvKa0nc/PMjzttX4ZUM8InwMrNhGMhVNkLxGHjt86JkPKW7vkiOZBJ2tdKAXNEfuoNNIbSXPF9eYvqD1TNhHndgusB49prqQ==', 'hj3xPeNypkUnXxWQ3XZ3OmQ8XkWMlwBBQSy0pzUQv2KIUBp7sv04eVq6KKYQht5Dr2O5O/G4/G4w0ET/ej2iQit3kW++qEhswKiD6bkBAVrlR3m4RoRceeM8HCE5/dEsYYI+W/0cgYyrvGobsbv7AWoyLnd5BO2/7Swu4IXbs6jsoc4dlZI=', '193514493219874', 'QBO', NULL, '2017-03-28 06:17:00', '2017-03-28 06:17:25', '2017-03-31 19:18:46');
+(3, 'DO_NOT_CHANGE_ME', '12345', 'qyprd3uJ3j1bFyqtJXV17pUGC9Sd3Gl76iV4j4EpG5zvTMMt', '7hNbjgvdingpZWiUQDaN0sm3vHRqMoG1PKXwqnfq', 'B3tFq40toINRF1Thfic7IPRe5e72kHZcVDOVN5tJOAzWmQZliRHcHfY2g/J3r7Q2YIxKe7ywOKz/ENgoPjd3+4Xw+CDendSvKa0nc/PMjzttX4ZUM8InwMrNhGMhVNkLxGHjt86JkPKW7vkiOZBJ2tdKAXNEfuoNNIbSXPF9eYvqD1TNhHndgusB49prqQ==', 'hj3xPeNypkUnXxWQ3XZ3OmQ8XkWMlwBBQSy0pzUQv2KIUBp7sv04eVq6KKYQht5Dr2O5O/G4/G4w0ET/ej2iQit3kW++qEhswKiD6bkBAVrlR3m4RoRceeM8HCE5/dEsYYI+W/0cgYyrvGobsbv7AWoyLnd5BO2/7Swu4IXbs6jsoc4dlZI=', '193514493219874', 'QBO', NULL, '2017-03-28 06:17:00', '2017-03-28 06:17:25', '2017-04-12 07:57:17');
 
 -- --------------------------------------------------------
 
@@ -396,13 +363,7 @@ CREATE TABLE `table_challan` (
 --
 
 INSERT INTO `table_challan` (`challan_id`, `pickup_loc_id`, `delivery_loc_id`) VALUES
-(1, '1', '2'),
-(1490726463, '1', '2'),
-(1490726523, '1', '2'),
-(1490726524, '1', '2'),
-(1490726525, '1', '2'),
-(1490726526, '2', '1'),
-(1490726527, '1', '2');
+(1490726533, '2', '1');
 
 -- --------------------------------------------------------
 
@@ -449,10 +410,10 @@ CREATE TABLE `table_item` (
 --
 
 INSERT INTO `table_item` (`name`, `item_code`, `category`, `length`, `breadth`, `height`, `weight`, `material`, `value`, `selling_value`, `HSN`) VALUES
-('Fibre Glass Ladder', '1', NULL, '50', '1', '2', '20', 'Fibre Glass', 450, '250', 0),
-('Aluminium Scaffold', '2', NULL, '12', '12', '12', '12', 'Aluminium', 300, '150', 0),
-('Fire Extinguisher', '3', NULL, '10', '10', '10', '20', 'CO2', 200, '200', 0),
-('desc', '5', '1', '1', '1', '1', '1', NULL, 1, '1', 1);
+('Fibre Glass Ladder', '1', 'Ladder', '50', '1', '2', '20', 'Fibre Glass', 450, '250', 0),
+('Aluminium Scaffold', '2', 'Scaffold', '12', '12', '12', '12', 'Aluminium', 300, '150', 0),
+('Fire Extinguisher', '3', 'Fire', '10', '10', '10', '20', 'CO2', 200, '200', 0),
+('desc', '5', 'Desc', '1', '1', '1', '1', NULL, 1, '1', 1);
 
 -- --------------------------------------------------------
 
@@ -560,20 +521,26 @@ CREATE TABLE `table_quotation` (
   `kkc` float(7,2) NOT NULL,
   `total` float(7,2) NOT NULL,
   `createdby` varchar(50) NOT NULL,
-  `customer_id` int(5) NOT NULL,
+  `customer_id` varchar(8) NOT NULL,
   `customer_name` char(50) NOT NULL,
   `delivery_address` varchar(300) NOT NULL,
   `delivery_date` text,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` char(7) NOT NULL,
+  `objection` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `table_quotation`
 --
 
-INSERT INTO `table_quotation` (`s_no`, `status`, `row_total`, `sub_total`, `freight`, `tax`, `swach_bharat`, `kkc`, `total`, `createdby`, `customer_id`, `customer_name`, `delivery_address`, `delivery_date`, `timestamp`) VALUES
-(1, 'Customer', 56.00, 66.00, 66.00, 66.00, 66.00, 66.00, 256.00, 'orders@gmail.com', 2, 'Vanjul Jain', 'Noida Sector 18, <br> Starbucks', '12/03/2016', '2017-04-03 10:04:34'),
-(2, 'Customer', 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 2.00, 'orders@gmail.com', 1, 'Vikas Prasad Mahato', 'D-8, Gulmohar Park', '29/04/1935', '2017-04-03 10:09:11');
+INSERT INTO `table_quotation` (`s_no`, `status`, `row_total`, `sub_total`, `freight`, `tax`, `swach_bharat`, `kkc`, `total`, `createdby`, `customer_id`, `customer_name`, `delivery_address`, `delivery_date`, `timestamp`, `type`, `objection`) VALUES
+(11, 'quot', 9900.00, 9925.00, 25.00, 1389.50, 49.63, 49.63, 11413.75, 'orders@gmail.com', '{-4}', 'Diego Rodriguez', 'D8 guljhgg', 'Array', '2017-04-12 16:10:15', 'Rental', 1),
+(12, 'quot', 1050.00, 1075.00, 25.00, 150.50, 537.50, 537.50, 2300.50, 'orders@gmail.com', '{-4}', 'Diego Rodriguez', 'D-8 Gulmohar Park', 'Array', '2017-04-13 03:11:31', 'Rental', 1),
+(13, 'quot', 1500.00, 1523.00, 23.00, 213.22, 761.50, 761.50, 3259.22, 'orders@gmail.com', '{-59}', 'DisplayName2792', 'D-8, Gulmohar Park', 'Array', '2017-04-13 07:29:19', 'Rental', 1),
+(14, 'quot', 1050.00, 1150.00, 100.00, 161.00, 575.00, 575.00, 2461.00, 'orders@gmail.com', '{-3}', 'Cool Cars', 'D-8, Gulmohar Park', 'Array', '2017-04-13 07:36:30', 'Rental', 0),
+(15, 'quot', 450.00, 473.00, 23.00, 66.22, 236.50, 236.50, 1012.22, 'orders@gmail.com', '{-3}', 'Cool Cars', 'D-8, gulmohar park', 'Array', '2017-04-13 15:06:27', 'Rentls', 0),
+(16, 'quot', 750.00, 775.00, 25.00, 108.50, 387.50, 387.50, 1658.50, 'orders@gmail.com', '{-59}', 'DisplayName2792', 'D-8, gulmohar park', 'Array', '2017-04-13 15:10:58', 'Sales', 0);
 
 -- --------------------------------------------------------
 
@@ -583,6 +550,7 @@ INSERT INTO `table_quotation` (`s_no`, `status`, `row_total`, `sub_total`, `frei
 
 CREATE TABLE `table_quotation_item` (
   `s_no` int(11) NOT NULL,
+  `type` char(7) NOT NULL,
   `desc` varchar(100) DEFAULT NULL,
   `unit_price` int(6) DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
@@ -595,9 +563,23 @@ CREATE TABLE `table_quotation_item` (
 -- Dumping data for table `table_quotation_item`
 --
 
-INSERT INTO `table_quotation_item` (`s_no`, `desc`, `unit_price`, `qty`, `units`, `duration`, `tot`) VALUES
-(1, 'Ladder', 2, 2, 'Days', 2, 2.00),
-(2, 'Scaffolds', 12, 2, 'Days', 22, 212.00);
+INSERT INTO `table_quotation_item` (`s_no`, `type`, `desc`, `unit_price`, `qty`, `units`, `duration`, `tot`) VALUES
+(8, '', 'Aluminium Scaffold', 300, 1, 'Days', 2, 600.00),
+(8, '', 'Fire Extinguisher', 200, 1, '1', 2, 400.00),
+(8, '', 'Fibre Glass Ladder', 450, 1, '1', 1, 450.00),
+(9, '', 'Fibre Glass Ladder', 450, 1, 'Days', 2, 900.00),
+(9, '', 'Aluminium Scaffold', 300, 1, '1', 3, 900.00),
+(9, '', 'Fire Extinguisher', 200, 1, '1', 2, 400.00),
+(10, '', 'Fibre Glass Ladder', 450, 1, 'Months', 3, 1350.00),
+(10, '', 'Aluminium Scaffold', 300, 2, '1', 2, 1200.00),
+(11, '', 'Fibre Glass Ladder', 450, 1, 'Days', 22, 9900.00),
+(13, '', 'Fibre Glass Ladder', 450, 2, 'Days', 2, 900.00),
+(13, '', 'Aluminium Scaffold', 300, 2, '1', 2, 600.00),
+(14, 'Item', 'Aluminium Scaffold', 300, 2, 'Days', 2, 600.00),
+(14, 'Bundle', 'Fibre Glass Ladder', 450, 1, '2', 1, 450.00),
+(15, 'Item', 'Fibre Glass Ladder', 450, 1, 'Days', 3, 450.00),
+(16, 'Item', 'Fibre Glass Ladder', 450, 1, NULL, NULL, 450.00),
+(16, 'Item', 'Aluminium Scaffold', 300, 1, NULL, NULL, 300.00);
 
 -- --------------------------------------------------------
 
@@ -657,6 +639,7 @@ ALTER TABLE `location_category_relation`
 ALTER TABLE `location_item_relation`
   ADD UNIQUE KEY `location_id` (`location_id`,`item_id`),
   ADD UNIQUE KEY `location_id_2` (`location_id`,`item_id`),
+  ADD UNIQUE KEY `location_id_3` (`location_id`,`item_id`),
   ADD KEY `item_id` (`item_id`);
 
 --
@@ -665,6 +648,12 @@ ALTER TABLE `location_item_relation`
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `job_order` (`job_order`);
+
+--
+-- Indexes for table `qb_cache_customer`
+--
+ALTER TABLE `qb_cache_customer`
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `quickbooks_config`
@@ -770,7 +759,8 @@ ALTER TABLE `table_location_category`
 -- Indexes for table `table_quotation`
 --
 ALTER TABLE `table_quotation`
-  ADD PRIMARY KEY (`s_no`);
+  ADD PRIMARY KEY (`s_no`),
+  ADD KEY `customer_key` (`customer_id`);
 
 --
 -- Indexes for table `table_quotation_item`
@@ -792,7 +782,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `quickbooks_config`
 --
@@ -827,12 +817,12 @@ ALTER TABLE `quickbooks_ticket`
 -- AUTO_INCREMENT for table `table_challan`
 --
 ALTER TABLE `table_challan`
-  MODIFY `challan_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1490726528;
+  MODIFY `challan_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1490726534;
 --
 -- AUTO_INCREMENT for table `table_quotation`
 --
 ALTER TABLE `table_quotation`
-  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `s_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
@@ -871,6 +861,12 @@ ALTER TABLE `location_item_relation`
 ALTER TABLE `table_item_category_relation`
   ADD CONSTRAINT `table_item_category_relation_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `table_item` (`item_code`),
   ADD CONSTRAINT `table_item_category_relation_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `table_item_category` (`category_id`);
+
+--
+-- Constraints for table `table_quotation`
+--
+ALTER TABLE `table_quotation`
+  ADD CONSTRAINT `customer_key` FOREIGN KEY (`customer_id`) REFERENCES `qb_cache_customer` (`customer_id`);
 
 --
 -- Constraints for table `table_quotation_item`

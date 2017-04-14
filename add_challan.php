@@ -1,25 +1,30 @@
 <?php
-if(isset($_POST['submit_row']))
+if(isset($_POST['submit']))
 {
      include("includes/dbcon.php");
     error_reporting(E_ALL); ini_set('display_errors', 1);
     $location_from = $_POST['from'];
     $location_to = $_POST['to'];
     $job_order = $_POST['job_order'];
-    $type = $_POST['type'];
     
- $item_code=$_POST['item_code'];
- $item_description=$_POST['item_description'];
- $item_quantity=$_POST['item_quantity'];
- $app_price=$_POST['app_price'];
- $total_price=$_POST['total_price'];
 
+$type = $_POST['type'];
+ $item_code=$_POST['itemNo'];
+ $item_description=$_POST['itemName'];
+ $item_quantity=$_POST['quantity'];
+ $app_price=$_POST['price'];
+ $total_price=$_POST['total'];
+
+
+//echo  $location_from." ".$location_to." ". $job_order;
     $flag = "true";
     
     for($i=0;$i<count($item_code);$i++){
         $qty_reduced = "SELECT quantity FROM location_item_relation WHERE location_id =  '$location_from' AND item_id = '$item_code[$i]'";
         
     $qty_at_pickup =  mysqli_fetch_array(mysqli_query($con, $qty_reduced));
+        
+      //  echo  $qty_reduced;
         
         echo "qty at source".$qty_at_pickup['quantity'];
         
@@ -45,7 +50,7 @@ if(isset($_POST['submit_row']))
         }
         
         
-    }
+   }
     
     
     if($flag=="true"){

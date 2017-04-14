@@ -1,21 +1,24 @@
 //adds extra table rows
-var i=$('#table_auto tr').length;
+var i=$('#table_challan_rental tr').length;
 $(".addmore").on('click',function(){
-    console.log("hello");
 	html = '<tr>';
 	html += '<td><input class="case" type="checkbox"/></td>';
-    html += ' <td><select id="type_'+i+'" name="item_type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>';
+    html += ' <td><select id="type_'+i+'" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>';
 	html += '<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" data-type="productName" name="itemName[]" id="itemName_'+i+'" class="form-control autocomplete_txt" autocomplete="off"></td>';
 	html += '<td><input type="text" name="price[]" id="price_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-     html += '<td><input type="number" name="duration[]" id="duration_'+i+'" class="form-control" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-    html+= ' <td><select id="unit_dur_'+i+'" name="unit_dur[]"><option value="Days">Days</option><option value="Months">Months</option><option value="Years">Years</option></select></td>';
-   html += '<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
+    html += '<td><input type="text" name="quantity[]" id="quantity_'+i+'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '<td><input type="text" name="total[]" id="total_'+i+'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
 	html += '</tr>';
-	$('#table_auto').append(html);
+	$('#table_challan_rental').append(html);
 	i++;
 });
+
+
+/*$(".addmore").on('click', function(){
+    alert("addmore");
+});*/
+
 
 //to check all checkboxes
 $(document).on('change','#check_all',function(){
@@ -26,7 +29,7 @@ $(document).on('change','#check_all',function(){
 $(".delete").on('click', function() {
 	$('.case:checkbox:checked').parents("tr").remove();
 	$('#check_all').prop("checked", false); 
-	calculateTotalRent();
+	calculateTotal();
 });
 
 //autocomplete script
@@ -72,7 +75,7 @@ $(document).on('focus','.autocomplete_txt',function(){
 			$('#quantity_'+id[1]).val(1);
 			$('#price_'+id[1]).val(names[2]);
 			$('#total_'+id[1]).val( 1*names[2] );
-			calculateTotalRent();
+			calculateTotal();
 		}		      	
 	});
 });
@@ -83,19 +86,17 @@ $(document).on('change keyup blur','.changesNo',function(){
 	id = id_arr.split("_");
 	quantity = $('#quantity_'+id[1]).val();
 	price = $('#price_'+id[1]).val();
-    duration = $('#duration_'+id[1]).val();
-	if( quantity!='' && price !='' && duration !='' ) $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)*parseFloat(duration)).toFixed(2) );	
-	calculateTotalRent();
+	if( quantity!='' && price !='') $('#total_'+id[1]).val( (parseFloat(price)*parseFloat(quantity)).toFixed(2) );	
+	calculateTotal();
 });
-
 
 
 $(document).on('change keyup blur','#freight',function(){
-	calculateTotalRent();
+	calculateTotal();
 });
 
 //total price calculation 
-function calculateTotalRent(){
+function calculateTotal(){
 	subTotal = 0 ; total = 0; subTotalFreight = 0;
 	$('.totalLinePrice').each(function(){
 		if($(this).val() != '' )subTotal += parseFloat( $(this).val() );
@@ -106,11 +107,8 @@ function calculateTotalRent(){
     subTotalFreight = subTotal + freight; 
         $('#sub_total_freight').val(subTotalFreight.toFixed(2));
         taxRate = 0.14;
-        kkcRate = 0.005;
-        swachBharat = 0.005;
-        
-        console.log((subTotalFreight*taxRate).toFixed(2));
-        console.log((subTotalFreight*kkcRate).toFixed(2));
+        kkcRate = 0.5;
+        swachBharat = 0.5;
      $('#tax').val( (subTotalFreight*taxRate).toFixed(2) );
      $('#swach_bharat').val( (subTotalFreight*swachBharat).toFixed(2) );
       $('#kkc').val( (subTotalFreight*kkcRate).toFixed(2) );   
@@ -121,9 +119,7 @@ function calculateTotalRent(){
     }else{
         
     }
-        
 }
-
 //It restrict the non-numbers
 var specialKeys = new Array();
 specialKeys.push(8,46); //Backspace
@@ -133,3 +129,12 @@ function IsNumeric(e) {
     var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
     return ret;
 }
+
+//datepicker
+$(function () {
+    $('#invoiceDate').datepicker({});
+});
+
+$(document).ready(function() {
+    $('#example').DataTable();
+} );

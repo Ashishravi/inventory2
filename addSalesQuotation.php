@@ -204,3 +204,6 @@ function selectCustomer(id,name) {
   </div>
   <!-- /.content-wrapper -->
 <?php include("includes/footer.php"); ?>
+<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+  <script src="dist/js/jquery-ui.min.js"></script>
+<script src="dist/js/salesquot.js"></script>
