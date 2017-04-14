@@ -2,8 +2,12 @@
 <?php 
 $sql = mysqli_query($con, "SELECT * FROM orders WHERE id = '".$_GET['id']."'");
 $result = mysqli_fetch_array($sql);
-$location = mysqli_query($con, "SELECT * FROM table_location WHERE location_id = '".$result['delivery_add']."'");
-$location_result = mysqli_fetch_array($location);
+
+
+$sql2 = "SELECT billing_address, mailing_address FROM `qb_cache_customer` WHERE customer_id = '".$result['customer_id']."'";
+$customer = mysqli_query($con, $sql2);
+
+$cust_det = mysqli_fetch_array($customer);
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -30,7 +34,6 @@ $location_result = mysqli_fetch_array($location);
         	</div>
         <!-- /.col -->
             <div class="box-body">
-
                 <blockquote>
 	          <strong>Order No:
 	            </strong><?php echo $result['job_order']; ?>
@@ -42,36 +45,29 @@ $location_result = mysqli_fetch_array($location);
 	          </blockquote>
                  <blockquote>
 	          <strong>Mailing Address:
-	            </strong><?php echo $location_result['address']; ?>
+	            </strong><?php echo $cust_det['mailing_address']; ?>
 	          </blockquote>
                  <blockquote>
 	          <strong>Billing Address:
-	            </strong><?php echo $location_result['address']; ?>
+	            </strong><?php echo $cust_det['billing_address']; ?>
 	          </blockquote>
                  <blockquote>
 	          <strong>Delivery Address:
-	            </strong><?php echo $location_result['address']; ?>
+	            </strong><?php echo $result['delivery_add']; ?>
 	          </blockquote>
                  <blockquote>
 	          <strong>Name:
-	            </strong><?php echo $location_result['name']; ?>
+	            </strong><?php echo $result['name']; ?>
 	          </blockquote>
-                 <blockquote>
-	          <strong>Email:
-	            </strong><?php echo $location_result['email']; ?>
-	          </blockquote>
-                <blockquote>
-	          <strong>Phone:
-	            </strong><?php echo $location_result['mobile']; ?>
-	          </blockquote>
+             
                 <blockquote>
 	          <strong>Delivery Date:
 	            </strong><?php echo $result['date']; ?>
 	          </blockquote>
                 
-                <form action="get_quotation.php" method="post" >
+              <!--  <form action="get_quotation.php" method="post" >
                     <button type="submit" name="get_quot" value="<?php echo $_GET['id']; ?>">Get Quotation</button>
-                </form>
+                </form>-->
                 
         	</div>
 

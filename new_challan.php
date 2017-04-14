@@ -7,123 +7,23 @@ $job_order = $_POST['job_order'];
 $challan_type = $_POST['challan_type'];
 
 $items = mysqli_query($con, "SELECT * FROM location_item_relation WHERE location_id =".$location_from."" );
-
-//$items = mysqli_query($con, "SELECT table_item.name, table_item.item_code, location_item_relation.quantity FROM location_item_relation INNER JOIN table_item ON location_item_relation.item_id = table_item.item_code WHERE location_item_relation.location_id = 1 " );
-
-
 ?>
-
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-
-<script>
-$(document).ready(function(){
-	  if (jQuery) {  
-          // jQuery is loaded  
-          alert("Yeah!");
-        } else {
-          // jQuery is not loaded
-          alert("Doesn't Work");
-        }
-
-	$("#item-code").keyup(function(){
-		$.ajax({
-		type: "POST",
-		url: "readItem.php",
-		data:'keyword='+$(this).val(),
-		beforeSend: function(){
-			$("#item-code").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-		},
-		success: function(data){
-			$("#suggesstion-box").show();
-			$("#suggesstion-box").html(data);
-			$("#item-code").css("background","#FFF");
-		}
-		});
-	});
-});
-
-function selectItem(code, desc, value) {
-$("#item-code").val(code);
-$("#suggesstion-box").hide();
-$("#description").val(desc);
-$("#value").val(value);
-}
-</script>
-
-
-<script type="text/javascript">    
-    
-function add_row()
-{
- $rowno=$("#challan_table tr").length;
- $rowno=$rowno+1;
- $("#challan_table tr:last").after("<tr id='row"+$rowno+"'><td><input type='text' name='item_code[]' placeholder='ItemCode'></td><td><input type='text' name='item_description[]' placeholder='Description'></td><td><input type='text' name='item_quantity[]' placeholder='Quantity'></td><td><input type='text' name='app_price[]' placeholder='Approx Unit Price'></td><td><input type='text' name='total_price[]' placeholder='Total Price'></td><td><button class='btn btn-danger' type='button' onclick=delete_row('row"+$rowno+"')>-Delete</button></td></tr>");
-}
-    
-    
-function delete_row(rowno)
-{
- $('#'+rowno).remove();
-}
-
-    
-    function copy_to(){
-  //    var n1 = document.getElementById('item-code');
- //     var n2 = document.getElementById('item_code');
-  document.getElementById('item_code').value = document.getElementById('item-code').value;
-  document.getElementById('item_description').value = document.getElementById('description').value;
-  document.getElementById('app_price').value = document.getElementById('value').value;
-        
-      //  var a = $('#search').html();
-//var b = $('#form-div').html(a);
-    }    
-    
-    
-    
-</script>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Add New Challan
+        Add Challan
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add New Challan</li>
+        <li class="active">Add Challan</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-         <div class="row">
-		        <div class="col-xs-12 table-responsive">
-		          <table class="table table-striped">
-		            <thead>
-		            <tr>
-		              <th>Item Code</th>
-		              <th>Quantity</th>
-		            </tr>
-		            </thead>
-		            <tbody>
-		           	<?php
-                        $sql="SELECT * FROM location_item_relation WHERE location_id ='".$location_from."'";
-                        $items = mysqli_query($con, $sql );
-                        
-		           		foreach ($items as $value) { ?>
-		           			    <tr>
-					              <td><?php echo $value['item_id']; ?></td>
-					              <td><?php echo $value['quantity']; ?></td>
-					            </tr>
-		           		<?php }
-		           	?>
-		            </tbody>
-		          </table>
-		        </div>
-		        <!-- /.col -->
-		      </div>
-                
         
     <div class="row">
         <!-- left column -->
@@ -131,69 +31,80 @@ function delete_row(rowno)
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-                         <blockquote>
-	          <strong>Challan type:
-	            </strong> <?php echo $challan_type;?>
-	          </blockquote>
-                <blockquote>
-	          <strong>From Location:
-	            </strong> <?php echo $location_from;?>
-	          </blockquote>
-                <blockquote>
-	          <strong>To Location:
-	            </strong> <?php echo $location_to;?>
-	          </blockquote>
-                 <blockquote>
-	          <strong>Job Order:
-	            </strong> <?php echo $job_order;?>
-	          </blockquote>
-                 
-                   
-                <div class="frmSearch row" id="search">
-                    <select>
-                       <option value="item">Item</option>
-                       <option value="bundle">Bundle</option>
-                    </select>
-<input type="text" id="item-code" placeholder="Item Name" />
-<input type="text" id="description" placeholder="Description" />
-                    <input type="text" id="value" placeholder="Value" />
-                     <input type="button" value="copy" onclick="copy_to()"/>
-<div id="suggesstion-box"></div>
-                   
-                   
-</div>
-                       
+	          <strong>Challan type:</strong> <?php echo $challan_type;?><br>
+	          <strong>From Location:</strong> <?php echo $location_from;?><br>
+	          <strong>To Location:</strong> <?php echo $location_to;?><br>
+	          <strong>Job Order:</strong> <?php echo $job_order;?><br>
+                        
                          <div id="form_div">
  
-        <form method="post" action="add_challan.php">
-  <table id="challan_table" class="table table-striped">
-        <thead>
-		            <tr>
-		              <th>Item</th>
-                        <th>Description</th>
-		              <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
-		            </tr>
-		            </thead>
-      <tbody>
-   <tr id="row1">
-    <td><input type="text" name="item_code[]" id="item_code" placeholder="Item Code"></td>
-    <td><input type="text" name="item_description[]" id="item_description" placeholder="Description"></td>
-    <td><input type="text" name="item_quantity[]" id="item_quantity" placeholder="Quantity"></td>
-       <td><input type="text" name="app_price[]" id="app_price" placeholder="Approx Unit Price"></td>
-        <td><input type="number" name="total_price[]" placeholder="Total Price"></td>
-   </tr>
-          </tbody>
-  </table>
+       
+            
+         
+                <form role="form" method="post" action="add_challan.php">
+                   <div class="box-body">                  
+                <div class='row'>
+						      		<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+						      			<table class="table table-bordered table-hover" id="table_challan_rental">
+											<thead>
+												<tr>
+													<th width="2%"><input id="check_all" class="formcontrol" type="checkbox"/></th>
+                                                    <th width="10%">Type</th>
+													<th width="10%">Item No</th>
+													<th width="48%%">Description</th>
+													<th width="10%">Unit Price</th>
+                                                   <th width="10%">Quantity</th>
+													<th width="10%">Total</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+                                                    
+													<td><input class="case" type="checkbox"/></td>
+                                                     <td><select id="type_1" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
+													<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_1" class="form-control autocomplete_txt" autocomplete="off"></td>
+													<td><input type="text" data-type="productName" name="itemName[]" id="itemName_1" class="form-control autocomplete_txt" autocomplete="off"></td>
+													<td><input type="number" name="price[]" id="price_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+                                                    <td><input type="number" name="quantity[]" id="quantity_1" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+													<td><input type="number" name="total[]" id="total_1" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>
+												</tr>
+											</tbody>
+										</table>
+						      		</div>
+						      	</div>
+						      	
+						      	<div class='row'>
+						      		<div class='col-xs-12 col-sm-3 col-md-3 col-lg-3'>
+						      			<button class="btn btn-danger delete" type="button">- Delete</button>
+						      			<button class="btn btn-success addmore" type="button">+ Add More</button>
+						      		</div>
+						      		
+										<div class="col-md-6" style="float:right;">
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"> Total: ₹</div>
+													<input type="number" step="any" class="form-control" name="subTotal" id="subTotal" placeholder="Subtotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+												</div>
+											</div>
+                                 
+									</div>
+						      	</div>
+						      	
+	   
+                 </div>
+                      </div>
+                  
+                  <hr>   
+	      </div>
+	      <div class="box-footer">
+	        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
+	      </div>
+            
             <input type="hidden" name="from" value="<?php echo $location_from; ?>"/>
             <input type="hidden" name="job_order" value="<?php echo $job_order; ?>"/>
             <input type="hidden" name="to" value="<?php echo $location_to; ?>"/>
             <input type="hidden" name="type" value="<?php echo $challan_type; ?>"/>
-  <div class='col-xs-12 col-sm-3 col-md-3 col-lg-3'>
-      			<button class="btn btn-success addmore" type="button" onclick="add_row();">+ Add More</button>
-      <button type="submit" name="submit_row" class="btn btn-primary" >Submit</button>
-      		</div>
+
  </form>
 </div>
                         
@@ -206,8 +117,7 @@ function delete_row(rowno)
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-<script>
-
-
-</script>
 <?php include("includes/footer.php"); ?>
+<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+  <script src="dist/js/jquery-ui.min.js"></script>
+<script src="dist/js/rental_challan.js"></script>

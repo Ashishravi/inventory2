@@ -14,16 +14,25 @@ $items = mysqli_query($con, $quotation_items);
     $si = 0;
     $string = '';
     foreach ($items as $row) {
-    $si++;
-    $string.="<tr>
-     <td>$si</td>
-      <td>$si</td>
-    <td>$row[desc]</td>
-    <td>$row[unit_price]</td>
-    <td>$row[qty]</td>
-    <td>$row[duration] $row[units]</td>
-    <td>$row[tot]</td>
-    </tr>";
+    $si++;        
+        $string += '
+        <tr>
+                                                    
+													<td><input class="case" type="checkbox"/></td>
+                                                     <td><select id="type_'.$si.'" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
+													<td><input type="text" data-type="productCode" name="itemNo[]" id="itemNo_'.$si.'" class="form-control autocomplete_txt" autocomplete="off"></td>
+													<td><input type="text" data-type="productName" name="itemName[]" id="itemName_'.$si.'" class="form-control autocomplete_txt" autocomplete="off" value="'.$row['desc'].'"></td>
+													<td><input type="number" name="price[]" id="price_'.$si.'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="'.$row['unit_price'].'"></td>
+													 <td><input type="number" name="duration[]" id="duration_'.$si.'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="'.$row['duration'].'"></td>
+                                                    <td><select id="unit_dur_'.$si.'" name="unit_dur[]">
+                                                        <option value="Days">Days</option>
+                                                         <option value="Weeks">Weeks</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Years">Years</option></select></td>
+                                                   
+                                                    <td><input type="number" name="quantity[]" id="quantity_'.$si.'" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="'.$row['qty'].'"></td>
+													<td><input type="number" name="total[]" id="total_'.$si.'" class="form-control totalLinePrice" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="'.$row['tot'].'"></td>
+												</tr>';
     }
 
 
@@ -64,11 +73,11 @@ function selectCustomer(id,name) {
       
     <section class="content-header">
       <h1>
-        New Quotation
+        Edit Quotation
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">New Quotation</li>
+        <li class="active">Edit Quotation</li>
       </ol>
     </section>
 
@@ -132,16 +141,18 @@ function selectCustomer(id,name) {
 		            </tr>
 		            </thead>
       <tbody>
-   <tr>
-       <td><input class="case" type="checkbox"/></td>
-       <td><select id="type" name="type[]"><option value="Item">Item</option><option value="Bundle">Bundle</option></select></td>
-    <td><input type="text" name="item_description[]" id="item_description_1" class="autocomplete_txt" placeholder="Description"></td>
-    <td><input type="text" name="unit_price[]" id="unit_price" placeholder="Unit Price"></td>
-       <td><input type="text" name="qty[]" id="qty" placeholder="Quantity"></td>
-       <td><select id="unit_days" name="unit_days[]"><option value="Days">Days</option><option value="Weeks">Weeks</option><option value="Months">Months</option></select></td>
-       <td><input type="text" name="duration[]" id="duration" placeholder="Duration"></td>
-        <td><input type="number" name="total_price[]" placeholder="Total Price"></td>
-   </tr>
+           <tr>
+                    <td><input id="check_all" class="formcontrol" type="checkbox"/></td>
+		              <td>Item</td>
+                        <td>Description</td>
+                        <td>Unit Price</td>
+                        <td>Quantity</td>
+                        <td>Units</td>
+                        <td>Duration</td>
+                        <td><?php echo "hello" ?></td>
+		            </tr>
+          <?php echo $string; ?>
+  
           </tbody>
        
   </table>

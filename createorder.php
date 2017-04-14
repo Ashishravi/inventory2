@@ -1,32 +1,22 @@
 <?php include("includes/header.php"); ?>
-  <!-- Content Wrapper. Contains page content -->
-
 <?php if($_GET['id']){
    $s_no = $_GET['id'];
 
 $sql = "SELECT * FROM `table_quotation` WHERE s_no = $s_no";
 $result_i  = mysqli_query($con, $sql);
 $result = mysqli_fetch_array($result_i);
-
-$quotation_items = "SELECT * FROM `table_quotation_item` WHERE s_no = $s_no";
-
-$items = mysqli_query($con, $quotation_items);
-
-    $si = 0;
-    $string = '';
-    foreach ($items as $row) {
-    $si++;
-    $string.="<tr>
-     <td>$si</td>
-      <td>$si</td>
-    <td>$row[desc]</td>
-    <td>$row[unit_price]</td>
-    <td>$row[qty]</td>
-    <td>$row[duration] $row[units]</td>
-    <td>$row[tot]</td>
-    </tr>";
-    }
-
+    
+    $sql2 = "SELECT
+            credit_limit, outstanding
+            FROM qb_cache_customer
+            WHERE customer_id = '".$result['customer_id']."'";
+    
+   
+//    echo $sql2;
+    
+    $customer_details = mysqli_query($con, $sql2);
+    $customer_details_array = mysqli_fetch_array($customer_details);
+    
     
 }else{
     echo "No id FOund";
@@ -35,7 +25,8 @@ $items = mysqli_query($con, $quotation_items);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        New Order
+        New Order<br>
+         
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -55,7 +46,7 @@ $items = mysqli_query($con, $quotation_items);
               <div class="box-body">
                              <div class="row">
                <div class="col-md-6">
-                                  <div class="form-group">
+                <div class="form-group">
                   <label for="id">Customer ID</label>
                   <input type="text" class="form-control" name="id" id="id" value="<?php echo $result['customer_id']; ?>">
                 </div>
@@ -63,7 +54,7 @@ $items = mysqli_query($con, $quotation_items);
                   <label for="name">Name</label>
                   <input type="text" class="form-control" name="name" id="name" value="<?php echo $result['customer_name']; ?>">
                 </div>
-                                   <div class="form-group">
+               <div class="form-group">
                   <label for="description">Description</label>
                   <input type="text" class="form-control" name="description" id="description" placeholder="Description">
                 </div>
@@ -89,7 +80,7 @@ $items = mysqli_query($con, $quotation_items);
                                  </div>
                   <hr>
                   
-                 
+                 <input type="hidden" value="<?php echo $s_no; ?>" name="quot">
                
             <div class="row">
 	        <div class="form-group col-md-3">
@@ -118,9 +109,19 @@ $items = mysqli_query($con, $quotation_items);
                   
 	      </div>
 	      <!-- /.box-body -->
-	
+	 <?php $sum = $customer_details_array['outstanding'] + $result['total'];
+         if($sum > $customer_details_array['credit_limit']) {
+             $create="0";
+            $obj =  "UPDATE `table_quotation` SET `objection`=1 WHERE s_no = $s_no";
+             mysqli_query($con, $obj);
+             echo $create;
+            }else  {$create="1";
+                    $obj =  "UPDATE `table_quotation` SET `objection`=0 WHERE s_no = $s_no";
+             mysqli_query($con, $obj);  echo $create;}
+          ?>
 	      <div class="box-footer">
-	        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
+	        <button type="submit" name="submit" id="submit" class="btn btn-primary" >
+                Submit</button>
 	      </div>
 	    </form>
 	    </div>

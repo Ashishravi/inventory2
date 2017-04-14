@@ -37,6 +37,10 @@ $result_i  = mysqli_query($con, $sql);
 $result = mysqli_fetch_array($result_i);
 
 $quotation_items = "SELECT * FROM `table_quotation_item` WHERE s_no = $s_no";
+    
+    $cust = "SELECT * FROM `qb_cache_customer` WHERE customer_id = '".$result['customer_id']."'";
+$cust_i  = mysqli_query($con, $cust);
+$customer = mysqli_fetch_array($cust_i);
 
 $items = mysqli_query($con, $quotation_items);
 
@@ -46,7 +50,7 @@ $items = mysqli_query($con, $quotation_items);
     $si++;
     $string.="<tr>
      <td>$si</td>
-      <td>$si</td>
+      <td>$row[type]</td>
     <td>$row[desc]</td>
     <td>$row[unit_price]</td>
     <td>$row[qty]</td>
@@ -66,8 +70,8 @@ $items = mysqli_query($con, $quotation_items);
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
-            <i class="fa fa-globe"></i> YoungMan India Pvt. Ltd.
-            <medium class="pull-right">Quotation</medium>
+            <i class="fa fa-globe"></i> Youngman India Pvt. Ltd.
+            <medium class="pull-right">Rental Quotation</medium>
           </h2>
         </div>
         <!-- /.col -->
@@ -84,11 +88,7 @@ $items = mysqli_query($con, $quotation_items);
           
          <strong> Kind Attention</strong>
           <address>
-            YoungMan India Pvt. Ltd.<br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (011) 123-5432<br>
-            Email: youngman@gmail.com
+            <?php echo $customer['mailing_address'];?>
           </address>
         </div>
         <!-- /.col -->
@@ -102,7 +102,7 @@ $items = mysqli_query($con, $quotation_items);
         <div class="col-sm-4 invoice-col">
         <strong>  Billing Address</strong>
           <address>
-            <?php echo $result['delivery_address'];?>
+            <?php echo $customer['billing_address'];?>
           </address>
         </div>
         <!-- /.col -->
@@ -118,8 +118,9 @@ $items = mysqli_query($con, $quotation_items);
                 <th>S. No.</th>
                 <th>Type</th>
                 <th>Description</th>
-              <th>Qty</th>
+             
               <th>Unit Price</th>
+                 <th>Qty</th>
               <th>Duration</th>
                 <th>Total</th>
             </tr>
@@ -191,11 +192,9 @@ $items = mysqli_query($con, $quotation_items);
       <div class="row no-print">
         <div class="col-xs-12">
           <a href="printquotation.php" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
-          </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+         <!-- <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="fa fa-download"></i> Generate PDF
-          </button>
+          </button>-->
         </div>
       </div>
     </section>
