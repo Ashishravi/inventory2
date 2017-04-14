@@ -84,21 +84,6 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 $dompdf->stream();
 
-/*$customerID = "SELECT customer_id FROM orders WHERE job_order = '$order'";
-$cid = '';
-
-$cust_id = mysqli_query($con, $customerID);
-foreach ($cust_id as $row) {
-   $cid = $row['customer_id'];
-    }
-
-echo "CID".$cid;*/
-    
-//getBillingAddress($cid);
-    
-
-
-
 function getBillingAddress($customer_id){
     
     require_once '../config.php'; 

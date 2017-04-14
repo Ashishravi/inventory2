@@ -86,15 +86,19 @@ $name = $_POST['name'];
 $date = $_POST['del_date'];
 $created_by = $_SESSION['user_id'];
 $quot = $_POST['quot'];
-   
-$sql = "INSERT INTO orders (work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,delivery_add,customer_id, name,date, created_by) VALUES ('$new1','$new2','$new3','$new4','0','$description', '$delivery_address','$customer_id', '$name', '$date', '$created_by')";
+   $job_order = time()."_".$quot;
+$sql = "INSERT INTO orders (job_order, work_order_image,security_letter_image,rental_payment_image,security_neg_image,status,description,delivery_add,customer_id, name,date, created_by) VALUES ('$job_order','$new1','$new2','$new3','$new4','1','$description', '$delivery_address','$customer_id', '$name', '$date', '$created_by')";
 
 
-$del = "";
+$del = "UPDATE table_quotation SET status='order' WHERE s_no=$quot";
 
+$insert_loc = "INSERT INTO `table_location`(`location_id`, `address`) VALUES ('$job_order','$delivery_address')";
 
-if(mysqli_query($con, $sql)){
-     $last_id = mysqli_insert_id($con);
+if( mysqli_query($con, $sql)){
+  
+    $last_id = mysqli_insert_id($con);
+     mysqli_query($con, $del);
+     mysqli_query($con, $insert_loc);
     header('location: vieworder.php?id='.$last_id);
 }
 

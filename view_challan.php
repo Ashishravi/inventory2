@@ -2,8 +2,9 @@
 
 <?php
 
-            $order = $_GET['id'];
-            $challan_id = $_POST['challan_id'];
+$job_order = $_POST['id'];
+$challan_id = $_POST['challan_id'];
+$challan_type = '';
 
 $pickup_location_id = '';
 $delivery_location_id = '';
@@ -11,21 +12,21 @@ $delivery_location_id = '';
 $pickup_address = '';
 $delivery_address = '';
 
-$query_loc_id = "SELECT * from table_challan WHERE challan_id = $challan_id";
+$query_loc_id = "SELECT * from table_challan WHERE challan_id = '$challan_id'";
+
 $loc_ids = mysqli_query($con, $query_loc_id);
                   	while($locations=mysqli_fetch_array($loc_ids)){
                         
                         $pickup_location_id = $locations['pickup_loc_id'];
                         $delivery_location_id = $locations['delivery_loc_id']  ;  
-                            
-                      //  echo  $pickup_location_id." and ".$delivery_location_id."<br>";
+                            $challan_type =  $locations['type'];
                     }
 
-$query_pickup_loc = "SELECT * from table_location WHERE location_id = $pickup_location_id";
+
+$query_pickup_loc = "SELECT * from table_location WHERE location_id=$pickup_location_id";
 
 $pickup_location = mysqli_query($con, $query_pickup_loc);
     while($pick=mysqli_fetch_array($pickup_location)){
-                     //   echo $pick['address']." and ".$pick['state'];
                         $pickup_address = $pick['address'].'<br>'.$pick['state']."<br>".$pick['pincode'];
                     }
 
@@ -37,6 +38,8 @@ $delivery_location = mysqli_query($con, $query_delivery_loc);
         $delivery_address = $deli['address'].'<br>'.$deli['state']."<br>".$deli['pincode'];
                     }
 
+$sql = "SELECT * FROM `challan_item_relation` WHERE challan_id = ' $challan_id'";
+
 
 $items = mysqli_query($con, $sql);
     $si = 0;
@@ -46,26 +49,12 @@ $items = mysqli_query($con, $sql);
     $string.="<tr>
      <td>$si</td>
     <td>$row[item_id]</td>
-    <td>$row[quantity]</td>
-    <td>$row[total_price]</td>
+    <td>$row[item_description]</td>
+   <td>$row[quantity]</td>
+   <td>$row[unit_price]</td>
+   <td>$row[total_price]</td>
     </tr>";
     }
-
-
-   /* $si = 0;
-    $string = '';
-    foreach ($items as $row) {
-    $si++;
-    $string.="<tr>
-     <td>$si</td>
-      <td>$row[type]</td>
-    <td>$row[desc]</td>
-    <td>$row[unit_price]</td>
-    <td>$row[qty]</td>
-    <td>$row[tot]</td>
-    </tr>";
-    }
-*/
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -95,40 +84,35 @@ $items = mysqli_query($con, $sql);
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
-            <i class="fa fa-globe"></i> YoungMan India Pvt. Ltd.
-             <medium class="pull-right">Sales Challan</medium>
+            <i class="fa fa-globe"></i> Youngman India Pvt. Ltd.
+             <medium class="pull-right"><?php echo $challan_type; ?></medium>
           </h2>
         </div>
         <!-- /.col -->
       </div>
       <!-- info row -->
-         <div >
-          <strong>Customer ID:</strong><?php echo $result['customer_id']; ?><br>
-            <strong>Customer Name:</strong><?php echo $result['customer_name']; ?>
-            
-        </div>
         <hr>
         
         <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
           
-         <strong> Kind Attention</strong>
+         <strong> Pickup Location</strong>
           <address>
-             <?php echo $customer['mailing_address'];?>
+             <?php echo $pickup_address;?>
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
         <strong>  Delivery Address</strong>
           <address>
-            <?php echo $result['delivery_address'];?>
+            <?php echo $delivery_address;?>
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
         <strong>  Billing Address</strong>
           <address>
-            <?php echo $customer['billing_address'];?>
+            <?php echo "Billing Address Here";?>
           </address>
         </div>
         <!-- /.col -->
@@ -142,7 +126,7 @@ $items = mysqli_query($con, $sql);
             <thead>
             <tr>
                 <th>S. No.</th>
-                <th>Type</th>
+                <th>Item Id</th>
                 <th>Description</th>
              
               <th>Unit Price</th>
@@ -167,58 +151,13 @@ $items = mysqli_query($con, $sql);
       </div>
       <!-- /.row -->
 
-      <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-xs-6">
-          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-              <b>Terms and Conditions</b>
-            All copyright, trade marks, design rights, patents and other intellectual property rights (registered and unregistered) in and on BBC Online Services and BBC Content belong to the BBC and/or third parties (which may include you or other users.) The BBC reserves all of its rights in BBC Content and BBC Online Services. Nothing in the Terms grants you a right or license to use any trade mark, design right or copyright owned or controlled by the BBC or any other third party except as expressly provided in the Terms.
-          </p>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-6">
-          <!--<p class="lead">Amount Due 2/22/2014</p>-->
-
-          <div class="table-responsive">
-            <table class="table">
-                <tr>
-                <th style="width:50%">Freight:</th>
-                <td>₹<?php echo $result['freight'];?></td>
-              </tr>
-              <tr>
-                <th>Subtotal:</th>
-                <td>₹<?php echo $result['sub_total'];?></td>
-              </tr>
-              <tr>
-                <th>Tax (9.3%)</th>
-                <td>₹<?php echo $result['tax'];?></td>
-              </tr>
-              <tr>
-                <th>Swachh Bharat:</th>
-                <td>₹<?php echo $result['swach_bharat'];?></td>
-              </tr>
-                 <tr>
-                <th>KKC:</th>
-                <td>₹<?php echo $result['kkc'];?></td>
-              </tr>
-              <tr>
-                <th>Total:</th>
-                <td>₹<?php echo $result['total'];?></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-          <a href="printquotation.php?id=<?php echo $result['s_no']; ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+          <a href="print_challan.php?id=<?php echo $_POST['challan_id']; ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+       <!--   <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="fa fa-download"></i> Generate PDF
-          </button>
+          </button>-->
         </div>
       </div>
     </section>

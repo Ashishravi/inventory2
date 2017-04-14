@@ -119,7 +119,7 @@
                 </thead>
                 <tbody>
                 <?php
-                $quotation = mysqli_query($con,"SELECT * FROM table_quotation");
+                $quotation = mysqli_query($con,"SELECT * FROM table_quotation WHERE status='quot'");
                 while($q_result = mysqli_fetch_array($quotation))
                 {
                 ?>

@@ -60,7 +60,7 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
                  <td><?php echo $result['date'] ?></td>
                  <td><a class="btn btn-block btn-default" href="vieworder.php?id=<?php echo $result['id']; ?>"><i class="fa fa-eye"></i> View</a></td>
                  <td>
-                    <form action="createpdf.php?id=<?php echo $result['job_order']; ?>" method="post">
+                    <form action="view_challan.php?id=<?php echo $result['job_order']; ?>" method="post">
                      <?php 
                     error_reporting(E_ALL); ini_set('display_errors', 1);
                         $get_challan = "SELECT DISTINCT challan_id FROM challan_item_relation WHERE job_order = '".$result['job_order']."'";
@@ -82,13 +82,12 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
                     </select>
                            </div>
                 </div>
-                        
                         <button class="btn btn-block btn-default" type="submit" name="formpdf_btn"><i class="fa fa-print"></i> Print</button>
                      </form>
                     
                     </td>
                 <td>
-                   <!-- <button type="button" class="btn btn-block btn-defaul" data-toggle="modal" data-button="delete" data-target="#newChallan"><i class="fa fa-edit"></i>New Challan</button>-->
+                  
                     <a class="btn btn-block btn-default" href="addForm.php?id=<?php echo $result['id']; ?>"><i class="fa fa-edit"></i> Add Form</a></td>
                 </tr>
                 <?php 

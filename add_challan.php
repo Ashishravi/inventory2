@@ -55,7 +55,7 @@ $type = $_POST['type'];
     
     if($flag=="true"){
         
-         $update_challan = "INSERT INTO `table_challan`( `pickup_loc_id`, `delivery_loc_id`) VALUES ('$location_from','$location_to')";
+         $update_challan = "INSERT INTO `table_challan`( `pickup_loc_id`, `delivery_loc_id`,`type`) VALUES ('$location_from','$location_to', '$type')";
       
             $challan_id="";
         
@@ -74,7 +74,8 @@ $type = $_POST['type'];
               $update_to = "UPDATE `location_item_relation` SET  `quantity`=quantity+ $item_quantity[$i] WHERE `location_id`='$location_to' AND `item_id`='$item_code[$i]' ";
              $update_from = "UPDATE `location_item_relation` SET  `quantity`=quantity- $item_quantity[$i] WHERE `location_id`='$location_from' AND `item_id`='$item_code[$i]'";
       
-      $update_challan_relation = "INSERT INTO `challan_item_relation`(`challan_id`, `item_id`, `quantity`, `job_order`) VALUES ('$challan_id','$item_code[$i]', $item_quantity[$i], '$job_order')";
+      $update_challan_relation = "INSERT INTO `challan_item_relation`(`challan_id`, `item_id`, `item_description`, `job_order`, `quantity`, `unit_price`, `total_price`) VALUES ('$challan_id','$item_code[$i]', '$item_description[$i]','$job_order',  $item_quantity[$i],
+      $app_price[$i], $total_price[$i])";
             
     if(mysqli_query($con, $update_to)){
          echo "updated ".$update_to ;

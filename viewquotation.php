@@ -61,7 +61,7 @@ $items = mysqli_query($con, $quotation_items);
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
-            <i class="fa fa-globe"></i> YoungMan India Pvt. Ltd.
+            <i class="fa fa-globe"></i> Youngman India Pvt. Ltd.
              <medium class="pull-right">Rental Quotation</medium>
           </h2>
         </div>
@@ -184,9 +184,9 @@ $items = mysqli_query($con, $quotation_items);
       <div class="row no-print">
         <div class="col-xs-12">
           <a href="printquotation.php?id=<?php echo $result['s_no']; ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+          <!--<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="fa fa-download"></i> Generate PDF
-          </button>
+          </button>-->
         </div>
       </div>
     </section>
