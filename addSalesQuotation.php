@@ -152,26 +152,25 @@ function selectCustomer(id,name) {
                                                      <input type="number" step="any" class="form-control" name="sub_total_freight" id="sub_total_freight" placeholder="SubTotal" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                  </div>
                                             </div>
-											<div class="form-group">
-												<div class="input-group">
-													<div class="input-group-addon">Tax: ₹</div>
-													<input type="number" step="any" class="form-control" id="tax" name="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
-												</div>
+											     
+                                            <div class="form-group">
+                                                 <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                       Tax: ₹
+                                                     </div>
+                                            <input type="number" step="any" class="form-control" id="tax" name="tax" placeholder="Tax" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+										 </div>
 											</div>
-                                             <div class="form-group">
+                                                     <input type="hidden" step="any"  class="form-control" name="swach_bharat" id="swach_bharat" placeholder="Swach Bharat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                           
+                                                   <!--Storing c form in kkc -->
+                                                 
+                                            <div class="form-group">
                                                  <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        Swach Bharat: ₹
+                                                        C Form : ₹
                                                      </div>
-                                                     <input type="number" step="any"  class="form-control" name="swach_bharat" id="swach_bharat" placeholder="Swach Bharat" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
-                                                 </div>
-                                            </div>
-                                             <div class="form-group">
-                                                 <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        KKC: ₹
-                                                     </div>
-                                                     <input type="number" step="any" class="form-control" name="kkc" id="kkc" placeholder="KKC" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+                                                     <input type="number" step="any" class="form-control" name="kkc" id="cform" placeholder="C Form" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
                                                  </div>
                                             </div>
 											<div class="form-group">

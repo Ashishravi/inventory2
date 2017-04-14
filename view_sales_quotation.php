@@ -144,7 +144,7 @@ $items = mysqli_query($con, $quotation_items);
         <div class="col-xs-6">
           <!--<p class="lead">Amount Due 2/22/2014</p>-->
 
-          <div class="table-responsive">
+        <div class="table-responsive">
             <table class="table">
                 <tr>
                 <th style="width:50%">Freight:</th>
@@ -155,15 +155,11 @@ $items = mysqli_query($con, $quotation_items);
                 <td>₹<?php echo $result['sub_total'];?></td>
               </tr>
               <tr>
-                <th>Tax (9.3%)</th>
+                <th>Tax</th>
                 <td>₹<?php echo $result['tax'];?></td>
               </tr>
-              <tr>
-                <th>Swachh Bharat:</th>
-                <td>₹<?php echo $result['swach_bharat'];?></td>
-              </tr>
                  <tr>
-                <th>KKC:</th>
+                <th>C Form:</th>
                 <td>₹<?php echo $result['kkc'];?></td>
               </tr>
               <tr>

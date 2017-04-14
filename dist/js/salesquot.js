@@ -106,14 +106,15 @@ function calculateTotal(){
     if(freight != '' && typeof(freight) != "undefined" ){
     subTotalFreight = subTotal + freight; 
         $('#sub_total_freight').val(subTotalFreight.toFixed(2));
-        taxRate = 0.14;
-        kkcRate = 0.5;
-        swachBharat = 0.5;
+        taxRate =0.145;
+        kkcRate = 0;
+        swachBharat = 0;
+        cform = 0.02;
      $('#tax').val( (subTotalFreight*taxRate).toFixed(2) );
      $('#swach_bharat').val( (subTotalFreight*swachBharat).toFixed(2) );
       $('#kkc').val( (subTotalFreight*kkcRate).toFixed(2) );   
-	  
-        total = subTotalFreight + (subTotalFreight*taxRate) + (subTotalFreight*swachBharat) + (subTotalFreight*kkcRate) ;
+	  $('#cform').val( (subTotalFreight*cform).toFixed(2) ); 
+        total = subTotalFreight + (subTotalFreight*taxRate) + (subTotalFreight*swachBharat) + (subTotalFreight*kkcRate) + (subTotalFreight*cform);
     
 	   $('#totalAftertax').val( total.toFixed(2) );
     }else{

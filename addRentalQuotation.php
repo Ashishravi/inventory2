@@ -7,7 +7,35 @@
       <script src="dist/js/jquery-ui.min.js"></script>
 
       <script src="dist/js/rentalquot.js"></script>
-      
+      <script>
+    
+$(document).ready(function(){
+	 $("#name").keyup(function(){
+		$.ajax({
+		type: "POST",
+		url: "readCustomerFromCache.php",
+		data:'keyword='+$(this).val(),
+		beforeSend: function(){
+			$("#name").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+		},
+		success: function(data){
+			$("#suggesstion-box").show();
+			$("#suggesstion-box").html(data);
+			$("#name").css("background","#FFF");
+             console.log("data");
+		}
+		});
+	});
+});
+
+function selectCustomer(id,name) {
+    console.log(name);
+    $("#id").val(id);
+    $("#suggesstion-box").hide();
+    $("#name").val(name);  
+}
+</script>
+
     <section class="content-header">
       <h1>
         New Rental Quotation
@@ -170,7 +198,7 @@
                   
                   <hr>   
 	      </div>
-	 <input  type="hidden" value="Rentls" name="quot_type">
+	 <input  type="hidden" value="Rental" name="quot_type">
 	      <div class="box-footer">
 	        <button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
 	      </div>

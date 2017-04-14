@@ -20,7 +20,7 @@ $challan_type = mysqli_query($con, "SELECT * FROM table_challan_category");
     <section class="content">
       <!-- Info boxes -->
       <div class="col-md-4 col-sm-4 col-xs-12">
-           <button type="button" class="btn btn-block btn-default" data-toggle="modal" data-button="delete" data-target="#newChallan"><i class="fa fa-edit"></i>New Challan</button>
+           <button type="button" class="btn btn-block btn-primary pull-right" data-toggle="modal" data-button="delete" data-target="#newChallan"><i class="fa fa-edit"></i>New Challan</button>
           <!-- /.info-box -->
         </div>
       <!-- /.row -->

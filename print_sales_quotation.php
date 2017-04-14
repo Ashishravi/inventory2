@@ -162,15 +162,11 @@ $items = mysqli_query($con, $quotation_items);
                 <td>₹<?php echo $result['sub_total'];?></td>
               </tr>
               <tr>
-                <th>Tax (9.3%)</th>
+                <th>Tax</th>
                 <td>₹<?php echo $result['tax'];?></td>
               </tr>
-              <tr>
-                <th>Swachh Bharat:</th>
-                <td>₹<?php echo $result['swach_bharat'];?></td>
-              </tr>
                  <tr>
-                <th>KKC:</th>
+                <th>C Form:</th>
                 <td>₹<?php echo $result['kkc'];?></td>
               </tr>
               <tr>
